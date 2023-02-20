@@ -38,13 +38,13 @@ inline ArrayBag<ItemType>::ArrayBag()
 template<class ItemType>
 inline int ArrayBag<ItemType>::getCurrentSize() const
 {
-	return 0;
+	return itemCount;
 }
 
 template<class ItemType>
 inline int ArrayBag<ItemType>::isEmpty() const
 {
-	return 0;
+	return itemCount == 0;
 }
 
 template<class ItemType>
