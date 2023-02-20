@@ -19,8 +19,30 @@ void displayBag(ArrayBag<string>& bag)
 	cout << "\n\n";
 }
 
+void bagTester(ArrayBag<string>& bag)
+{
+	cout << "isEmpty: returns " << bag.isEmpty() << "; should be 1 (true)\n";
+	displayBag(bag);
+
+	string items[] = { "one", "two", "three", "four", "five", "one" };
+	cout << "Add 6 items to the bag: \n";
+	for (size_t i = 0; i < 6; i++)
+	{
+		bag.add(items[i]);
+	}
+	displayBag(bag);
+
+	cout << "isEmpty: returns " << bag.isEmpty() << "; should be 0 (false)\n";
+	cout << "getCurrnetSize: returns " << bag.getCurrentSize() << "; should be 6\n";
+	cout << "Try to add another entry: add(\"extra\") returns " << bag.add("extra") << "\n";
+}
+
 int main()
 {
-
+	ArrayBag<string> bag;
+	cout << "Testing the Array-Based Bag:\n";
+	cout << "The intial bag is empty.\n";
+	bagTester(bag);
+	cout << "All done!\n";
 	return 0;
 }
