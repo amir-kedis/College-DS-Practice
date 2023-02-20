@@ -40,5 +40,6 @@ class BagInterface
 		are in this bag.
 		@return A vector containing all the entries in the bag. */
 	virtual std::vector<ItemType> toVector() const = 0;
+	virtual ~BagInterface() = 0;
 };
 

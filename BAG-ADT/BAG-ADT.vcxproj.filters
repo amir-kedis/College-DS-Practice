@@ -23,5 +23,8 @@
     <ClInclude Include="BagInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ArrayBag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
