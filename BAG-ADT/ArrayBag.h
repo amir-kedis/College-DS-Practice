@@ -50,7 +50,15 @@ inline int ArrayBag<ItemType>::isEmpty() const
 template<class ItemType>
 inline bool ArrayBag<ItemType>::add(const ItemType& newEntry)
 {
-	return false;
+	bool hasRoomToAdd = itemCount < maxItems;
+
+	if (hasRoomToAdd)
+	{
+		items[itemCount] = newEntry;
+		itemCount++;
+	}
+
+	return hasRoomToAdd;
 }
 
 template<class ItemType>
