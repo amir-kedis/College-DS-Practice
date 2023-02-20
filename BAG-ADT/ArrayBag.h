@@ -25,7 +25,7 @@ public:
 template<class ItemType>
 inline int ArrayBag<ItemType>::getIndexOf(const ItemType& target) const
 {
-	// SPUD
+	// STUP
 	return 0;
 }
 
