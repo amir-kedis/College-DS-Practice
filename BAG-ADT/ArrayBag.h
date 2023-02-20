@@ -31,6 +31,7 @@ inline int ArrayBag<ItemType>::getIndexOf(const ItemType& target) const
 
 template<class ItemType>
 inline ArrayBag<ItemType>::ArrayBag()
+	:itemCount(0), maxItems(DEFAULT_CAPACITY)
 {
 }
 
