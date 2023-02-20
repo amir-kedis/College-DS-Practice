@@ -71,12 +71,20 @@ inline bool ArrayBag<ItemType>::add(const ItemType& newEntry)
 template<class ItemType>
 inline bool ArrayBag<ItemType>::remove(const ItemType& anEntry)
 {
-	return false;
+	int locatedIndex = getIndexOf(anEntry);
+	bool canRemoveItem = locatedIndex > -1;
+	if (canRemoveItem)
+	{
+		itemCount--;
+		items[locatedIndex] = items[itemCount]; // put last element data in to-be-deleted cell
+	}
+	return canRemoveItem;
 }
 
 template<class ItemType>
 inline void ArrayBag<ItemType>::clear()
 {
+	itemCount = 0;
 }
 
 template<class ItemType>
