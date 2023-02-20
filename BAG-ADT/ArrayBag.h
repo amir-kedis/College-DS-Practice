@@ -25,8 +25,14 @@ public:
 template<class ItemType>
 inline int ArrayBag<ItemType>::getIndexOf(const ItemType& target) const
 {
-	// STUP
-	return 0;
+	for (size_t i = 0; i < itemCount; i++)
+	{
+		if (items[i] == target)
+		{
+			return i;
+		}
+	}
+	return -1;
 }
 
 template<class ItemType>
