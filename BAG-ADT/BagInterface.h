@@ -39,6 +39,6 @@ class BagInterface
 	/** Empties and then f ills a given vector with all entries that
 		are in this bag.
 		@return A vector containing all the entries in the bag. */
-	virtual vector<ItemType> toVector() const = 0;
+	virtual std::vector<ItemType> toVector() const = 0;
 };
 
