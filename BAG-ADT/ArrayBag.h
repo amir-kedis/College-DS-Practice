@@ -23,6 +23,13 @@ public:
 };
 
 template<class ItemType>
+inline ArrayBag<ItemType>::ArrayBag()
+	:itemCount(0), maxItems(DEFAULT_CAPACITY)
+{
+}
+
+
+template<class ItemType>
 inline int ArrayBag<ItemType>::getIndexOf(const ItemType& target) const
 {
 	for (size_t i = 0; i < itemCount; i++)
@@ -33,12 +40,6 @@ inline int ArrayBag<ItemType>::getIndexOf(const ItemType& target) const
 		}
 	}
 	return -1;
-}
-
-template<class ItemType>
-inline ArrayBag<ItemType>::ArrayBag()
-	:itemCount(0), maxItems(DEFAULT_CAPACITY)
-{
 }
 
 template<class ItemType>
@@ -81,7 +82,17 @@ inline void ArrayBag<ItemType>::clear()
 template<class ItemType>
 inline int ArrayBag<ItemType>::getFrequencyOf(const ItemType& anEntry) const
 {
-	return 0;
+	unsigned int frequency = 0;
+
+	for (size_t curIndex = 0; curIndex < itemCount; curIndex++)
+	{
+		if (items[curIndex] == anEntry)
+		{
+			frequency++;
+		}
+	}
+
+	return frequency;
 }
 
 template<class ItemType>
