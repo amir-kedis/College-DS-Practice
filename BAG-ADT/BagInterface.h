@@ -32,5 +32,13 @@ class BagInterface
 		@param anEntry The entry to be counted.
 		@return The number of times anEntry appears in the bag. */
 	virtual int getFrequencyOf(const ItemType& anEntry) const = 0;
+	/** Tests whether this bag contains a given entry.
+		@param anEntry The entry to locate.
+		@return True if bag contains anEntry, or false otherwise. */
+	virtual bool contains(const ItemType& anEntry) const = 0;
+	/** Empties and then f ills a given vector with all entries that
+		are in this bag.
+		@return A vector containing all the entries in the bag. */
+	virtual vector<ItemType> toVector() const = 0;
 };
 
