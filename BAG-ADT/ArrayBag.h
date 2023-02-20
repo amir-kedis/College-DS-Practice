@@ -87,5 +87,12 @@ inline bool ArrayBag<ItemType>::contains(const ItemType& anEntry) const
 template<class ItemType>
 inline std::vector<ItemType> ArrayBag<ItemType>::toVector() const
 {
-	return std::vector<ItemType>();
+	std::vector<ItemType> bagContents;
+
+	for (size_t i = 0; i < itemCount; i++)
+	{
+		bagContents.push_back(items[i]);
+	}
+
+	return bagContents;
 }
