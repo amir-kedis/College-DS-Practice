@@ -98,7 +98,7 @@ inline int ArrayBag<ItemType>::getFrequencyOf(const ItemType& anEntry) const
 template<class ItemType>
 inline bool ArrayBag<ItemType>::contains(const ItemType& anEntry) const
 {
-	return false;
+	return getIndexOf(anEntry) != -1;
 }
 
 template<class ItemType>

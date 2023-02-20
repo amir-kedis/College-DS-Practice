@@ -35,6 +35,10 @@ void bagTester(ArrayBag<string>& bag)
 	cout << "isEmpty: returns " << bag.isEmpty() << "; should be 0 (false)\n";
 	cout << "getCurrnetSize: returns " << bag.getCurrentSize() << "; should be 6\n";
 	cout << "Try to add another entry: add(\"extra\") returns " << bag.add("extra") << "\n";
+	cout << "getFrequencyOf(\"one\") returns " << bag.getFrequencyOf("one")
+		<< " should return 2\n";
+	cout << "contains(\"two\") returns " << bag.contains("two") << " should return 1(true)\n";
+	cout << "contains(\"extra\") returns " << bag.contains("extra") << " should return 0(false)\n";
 }
 
 int main()
