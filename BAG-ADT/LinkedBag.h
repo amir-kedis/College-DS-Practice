@@ -103,6 +103,14 @@ inline bool LinkedBag<ItemType>::remove(const ItemType& anEntry)
 template<class ItemType>
 inline void LinkedBag<ItemType>::clear()
 {
+	while (headPtr != nullptr)
+	{
+		Node<ItemType>* nodeToBeDeltedPtr = headPtr;
+		headPtr = headPtr->getNext();
+
+		delete nodeToBeDeltedPtr;
+	}
+	itmCount = 0;
 }
 
 template<class ItemType>
