@@ -49,6 +49,20 @@ inline LinkedBag<ItemType>::LinkedBag()
 template<class ItemType>
 inline LinkedBag<ItemType>::LinkedBag(const LinkedBag<ItemType>& aBag)
 {
+	itmCount = aBag.itmCount;
+	Node<ItemType>* originChainPtr = aBag.headPtr;
+
+	if (originChainPtr == nullptr)
+	{
+		headPtr = nullptr;
+		return;
+	}
+
+	/* This implementation is not similar to the one in the Slides/Book*/
+	while (originChainPtr != nullptr)
+	{
+		add(originChainPtr->getItem());
+	}
 }
 
 template<class ItemType>
