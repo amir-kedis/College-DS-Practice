@@ -7,7 +7,7 @@ class LinkedBag :
 {
 private:
 	Node<ItemType>* headPtr;
-	int itmCount;
+	int itemCount;
 
 	Node<ItemType>* getPointerTo(const ItemType& target) const;
 public:
@@ -42,14 +42,14 @@ inline Node<ItemType>* LinkedBag<ItemType>::getPointerTo(const ItemType& target)
 
 template<class ItemType>
 inline LinkedBag<ItemType>::LinkedBag()
-	:headPtr(nullptr), itmCount(0)
+	:headPtr(nullptr), itemCount(0)
 {
 }
 
 template<class ItemType>
 inline LinkedBag<ItemType>::LinkedBag(const LinkedBag<ItemType>& aBag)
 {
-	itmCount = aBag.itmCount;
+	itemCount = aBag.itemCount;
 	Node<ItemType>* originChainPtr = aBag.headPtr;
 
 	if (originChainPtr == nullptr)
@@ -74,13 +74,13 @@ inline LinkedBag<ItemType>::~LinkedBag()
 template<class ItemType>
 inline int LinkedBag<ItemType>::getCurrentSize() const
 {
-	return itmCount;
+	return itemCount;
 }
 
 template<class ItemType>
 inline int LinkedBag<ItemType>::isEmpty() const
 {
-	return itmCount == 0;
+	return itemCount == 0;
 }
 
 template<class ItemType>
@@ -89,7 +89,7 @@ inline bool LinkedBag<ItemType>::add(const ItemType& newEntry)
 	// adds to the beginning of the list
 	Node<ItemType>* newNodePointer = new Node<ItemType>(newEntry, headPtr);
 	headPtr = newNodePointer;
-	itmCount++;
+	itemCount++;
 	return true;
 }
 
@@ -110,7 +110,7 @@ inline bool LinkedBag<ItemType>::remove(const ItemType& anEntry)
 
 		delete nodeToBeDeletedPtr;
 		nodeToBeDeletedPtr = nullptr; // unnecessary but good practice
-		itmCount--;
+		itemCount--;
 	}
 
 	return canRomveItem;
@@ -126,7 +126,7 @@ inline void LinkedBag<ItemType>::clear()
 
 		delete nodeToBeDeltedPtr;
 	}
-	itmCount = 0;
+	itemCount = 0;
 }
 
 template<class ItemType>
@@ -141,7 +141,7 @@ inline int LinkedBag<ItemType>::getFrequencyOf(const ItemType& anEntry) const
 	int frequency = 0;
 
 
-	if (itmCount == 0) {
+	if (itemCount == 0) {
 		return 0;
 
 	}
