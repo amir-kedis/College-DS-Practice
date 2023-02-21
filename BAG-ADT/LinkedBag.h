@@ -91,7 +91,7 @@ inline void LinkedBag<ItemType>::clear()
 template<class ItemType>
 inline bool LinkedBag<ItemType>::contains(const ItemType& anEntry) const
 {
-	return false;
+	return getPointerTo(anEntry) != nullptr;
 }
 
 template<class ItemType>
