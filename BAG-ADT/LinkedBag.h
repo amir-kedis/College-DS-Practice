@@ -62,6 +62,7 @@ inline LinkedBag<ItemType>::LinkedBag(const LinkedBag<ItemType>& aBag)
 	while (originChainPtr != nullptr)
 	{
 		add(originChainPtr->getItem());
+		originChainPtr = originChainPtr->getNext();
 	}
 }
 
