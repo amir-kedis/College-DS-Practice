@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "ArrayBag.h"
-
+#include "LinkedBag.h"
 
 using namespace std;
 

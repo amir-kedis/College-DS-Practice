@@ -32,6 +32,7 @@ inline Node<ItemType>* LinkedBag<ItemType>::getPointerTo(const ItemType& target)
 
 template<class ItemType>
 inline LinkedBag<ItemType>::LinkedBag()
+	:Node(NULL), headPtr(nullptr), itmCount(0)
 {
 }
 
