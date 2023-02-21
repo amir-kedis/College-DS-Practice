@@ -49,19 +49,22 @@ inline LinkedBag<ItemType>::~LinkedBag()
 template<class ItemType>
 inline int LinkedBag<ItemType>::getCurrentSize() const
 {
-	return 0;
+	return itmCount;
 }
 
 template<class ItemType>
 inline int LinkedBag<ItemType>::isEmpty() const
 {
-	return 0;
+	return itmCount == 0;
 }
 
 template<class ItemType>
 inline bool LinkedBag<ItemType>::add(const ItemType& newEntry)
 {
-	return false;
+	// adds to the beginning of the list
+	Node<ItemType>* newNodePointer = new Node<ItemType>(newEntry, headPtr);
+	headPtr = newNodePointer;
+	itmCount++;
 }
 
 template<class ItemType>
