@@ -54,6 +54,7 @@ inline LinkedBag<ItemType>::LinkedBag(const LinkedBag<ItemType>& aBag)
 template<class ItemType>
 inline LinkedBag<ItemType>::~LinkedBag()
 {
+	clear();
 }
 
 template<class ItemType>
