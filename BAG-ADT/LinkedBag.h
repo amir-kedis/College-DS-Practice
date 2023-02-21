@@ -93,5 +93,14 @@ inline int LinkedBag<ItemType>::getFrequencyOf(const ItemType& anEntry) const
 template<class ItemType>
 inline std::vector<ItemType> LinkedBag<ItemType>::toVector() const
 {
-	return std::vector<ItemType>();
+	std::vector<ItemType> bagContents;
+
+	Node<ItemType>* curPtr = headPtr;
+	while (curPtr != nullptr)
+	{
+		bagContents.push_back(curPtr->getItem());
+		curPtr = curPtr->getNext();
+	}
+
+	return bagContents;
 }
