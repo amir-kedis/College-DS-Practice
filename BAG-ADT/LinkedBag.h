@@ -87,7 +87,9 @@ template<class ItemType>
 inline bool LinkedBag<ItemType>::add(const ItemType& newEntry)
 {
 	// adds to the beginning of the list
-	Node<ItemType>* newNodePointer = new Node<ItemType>(newEntry, headPtr);
+	Node<ItemType>* newNodePointer = new Node<ItemType>;
+	newNodePointer->setItem(newEntry);
+	newNodePointer->setNext(headPtr);
 	headPtr = newNodePointer;
 	itemCount++;
 	return true;
