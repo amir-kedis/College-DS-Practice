@@ -12,7 +12,7 @@ public:
 	void setItem(const ItemType& anItem);
 	void setNext(Node<ItemType>* nextNodePtr);
 	ItemType getItem() const;
-	Node<ItemType> getNext() const;
+	Node<ItemType>* getNext() const;
 };
 
 template<class ItemType>
@@ -52,7 +52,7 @@ inline ItemType Node<ItemType>::getItem() const
 }
 
 template<class ItemType>
-inline Node<ItemType> Node<ItemType>::getNext() const
+inline Node<ItemType>* Node<ItemType>::getNext() const
 {
 	return next;
 }

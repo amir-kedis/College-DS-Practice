@@ -6,6 +6,7 @@
 template <class ItemType>
 class BagInterface
 {
+public:
 	/** Gets the current number of entries in this Bag.
 		@returns the integer number of entries currently in the bag. */
 	virtual int getCurrentSize() const = 0;

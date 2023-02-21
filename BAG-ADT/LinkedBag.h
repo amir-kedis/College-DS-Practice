@@ -42,7 +42,7 @@ inline Node<ItemType>* LinkedBag<ItemType>::getPointerTo(const ItemType& target)
 
 template<class ItemType>
 inline LinkedBag<ItemType>::LinkedBag()
-	:Node(NULL), headPtr(nullptr), itmCount(0)
+	:headPtr(nullptr), itmCount(0)
 {
 }
 
@@ -90,6 +90,7 @@ inline bool LinkedBag<ItemType>::add(const ItemType& newEntry)
 	Node<ItemType>* newNodePointer = new Node<ItemType>(newEntry, headPtr);
 	headPtr = newNodePointer;
 	itmCount++;
+	return true;
 }
 
 template<class ItemType>
