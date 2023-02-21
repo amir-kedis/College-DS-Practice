@@ -70,12 +70,13 @@ int main()
 	}
 	else {
 		bagPtr = new LinkedBag<string>();
-		cout << "Testing the Array-Based Bag:\n";
+		cout << "Testing the LinkedList-Based Bag:\n";
 	}
 
 
 	cout << "The initial bag is empty.\n";
 	bagTester(bagPtr);
+
 	delete bagPtr;
 	bagPtr = nullptr;
 	cout << "All done!\n";

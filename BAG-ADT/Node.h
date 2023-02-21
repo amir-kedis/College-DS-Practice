@@ -17,7 +17,7 @@ public:
 
 template<class ItemType>
 inline Node<ItemType>::Node()
-	:item(NULL), next(nullptr)
+	: next(nullptr)
 {
 }
 
@@ -29,7 +29,7 @@ inline Node<ItemType>::Node(const ItemType& anItem)
 
 template<class ItemType>
 inline Node<ItemType>::Node(const ItemType& anItem, Node<ItemType>* nextNodePtr)
-	: item(anItem), next(nullptr)
+	: item(anItem), next(nextNodePtr)
 {
 }
 
