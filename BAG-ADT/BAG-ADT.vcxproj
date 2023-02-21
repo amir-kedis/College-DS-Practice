@@ -132,6 +132,7 @@
   <ItemGroup>
     <ClInclude Include="ArrayBag.h" />
     <ClInclude Include="BagInterface.h" />
+    <ClInclude Include="LinkedBag.h" />
     <ClInclude Include="Node.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
