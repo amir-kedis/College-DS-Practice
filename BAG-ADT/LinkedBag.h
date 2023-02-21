@@ -80,7 +80,24 @@ inline bool LinkedBag<ItemType>::add(const ItemType& newEntry)
 template<class ItemType>
 inline bool LinkedBag<ItemType>::remove(const ItemType& anEntry)
 {
-	return false;
+	// removes the first node (replaces data in node with first node then deletes first node)
+
+	Node<ItemType>* entryNodePtr = getPointerTo(anEntry);
+	bool canRomveItem = !isEmpty() && (entryNodePtr != nullptr);
+
+	if (canRomveItem)
+	{
+		entryNodePtr->setItem(headPtr->getItem());
+
+		Node<ItemType>* nodeToBeDeletedPtr = headPtr; // store headPtr Pointer
+		headPtr = headPtr->getNext();
+
+		delete nodeToBeDeletedPtr;
+		nodeToBeDeletedPtr = nullptr; // unnecessary but good practice
+		itmCount--;
+	}
+
+	return canRomveItem;
 }
 
 template<class ItemType>
