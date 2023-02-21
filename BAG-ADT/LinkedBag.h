@@ -27,7 +27,17 @@ public:
 template<class ItemType>
 inline Node<ItemType>* LinkedBag<ItemType>::getPointerTo(const ItemType& target) const
 {
-	return nullptr;
+	Node<ItemType>* curPtr = headPtr;
+
+	while (curPtr != nullptr)
+	{
+		if (curPtr->getItem() == target)
+		{
+			return curPtr;
+		}
+		curPtr = curPtr->getNext();
+	}
+	return nullptr; // fallBack if didn't find el
 }
 
 template<class ItemType>
