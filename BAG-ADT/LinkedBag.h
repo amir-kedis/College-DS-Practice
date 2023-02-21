@@ -87,7 +87,25 @@ inline bool LinkedBag<ItemType>::contains(const ItemType& anEntry) const
 template<class ItemType>
 inline int LinkedBag<ItemType>::getFrequencyOf(const ItemType& anEntry) const
 {
-	return 0;
+	int frequency = 0;
+
+
+	if (itmCount == 0) {
+		return 0;
+
+	}
+
+	Node<ItemType>* curPtr = headPtr;
+	while (curPtr != nullptr)
+	{
+		if (curPtr->getItem() == anEntry)
+		{
+			frequency++;
+		}
+		curPtr = curPtr->getNext();
+	}
+
+	return frequency;
 }
 
 template<class ItemType>
