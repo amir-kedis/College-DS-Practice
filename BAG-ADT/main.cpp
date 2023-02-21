@@ -2,6 +2,7 @@
 
 #include "ArrayBag.h"
 
+
 using namespace std;
 
 void displayBag(ArrayBag<string>& bag)
@@ -54,7 +55,7 @@ int main()
 {
 	ArrayBag<string> bag;
 	cout << "Testing the Array-Based Bag:\n";
-	cout << "The intial bag is empty.\n";
+	cout << "The initial bag is empty.\n";
 	bagTester(bag);
 	cout << "All done!\n";
 	return 0;

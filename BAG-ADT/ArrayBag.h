@@ -36,7 +36,7 @@ inline int ArrayBag<ItemType>::getIndexOf(const ItemType& target) const
 	{
 		if (items[i] == target)
 		{
-			return i;
+			return (int)i;
 		}
 	}
 	return -1;
