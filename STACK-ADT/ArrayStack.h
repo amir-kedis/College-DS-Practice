@@ -52,7 +52,13 @@ inline bool ArrayStack<ItemType, MAX_SIZE>::push(const ItemType& newEntry)
 template<class ItemType, int MAX_SIZE>
 inline bool ArrayStack<ItemType, MAX_SIZE>::pop()
 {
-	return false;
+	if (isEmpty())				// check if there are items to pop
+	{
+		return false;
+	}
+
+	top--;						// decrease the counter and any new item will override the value
+	return true;
 }
 
 template<class ItemType, int MAX_SIZE>
