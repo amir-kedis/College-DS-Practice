@@ -130,6 +130,7 @@
     <ClCompile Include="testing-stack.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\BAG-ADT\Node.h" />
     <ClInclude Include="ArrayStack.h" />
     <ClInclude Include="StackInterface.h" />
   </ItemGroup>

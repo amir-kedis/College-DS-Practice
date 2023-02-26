@@ -26,5 +26,8 @@
     <ClInclude Include="ArrayStack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\BAG-ADT\Node.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
