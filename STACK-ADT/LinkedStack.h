@@ -23,6 +23,7 @@ public:
 
 template<class ItemType>
 inline LinkedStack<ItemType>::LinkedStack()
+	:topPtr(nullptr)
 {
 }
 
