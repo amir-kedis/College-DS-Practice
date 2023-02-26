@@ -39,7 +39,14 @@ inline bool ArrayStack<ItemType, MAX_SIZE>::isEmpty() const
 template<class ItemType, int MAX_SIZE>
 inline bool ArrayStack<ItemType, MAX_SIZE>::push(const ItemType& newEntry)
 {
-	return false;
+	if (isFull())				// check if there is a place to add first
+	{
+		return false;
+	}
+
+	top++;						// increment top cause we started from -1
+	items[top] = newEntry;		// add the element as the new top
+	return true;
 }
 
 template<class ItemType, int MAX_SIZE>
