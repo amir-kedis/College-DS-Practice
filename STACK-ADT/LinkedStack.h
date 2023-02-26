@@ -46,13 +46,23 @@ inline bool LinkedStack<ItemType>::isEmpty() const
 template<class ItemType>
 inline bool LinkedStack<ItemType>::push(const ItemType& newItem)
 {
-	return false;
+	Node<ItemType>* newNodePtr = new Node<ItemType>(newItem, topPtr); // make new node point to old top
+	topPtr = newNodePtr; // update top
+	return true; // No Size Limitation => always returns true
 }
 
 template<class ItemType>
 inline bool LinkedStack<ItemType>::pop()
 {
-	return false;
+	if (isEmpty()) // return if no item to pop
+	{
+		return false;
+	}
+
+	Node<ItemType>* nodeToDeletePtr = topPtr;	// store current PTR for deallocation
+	topPtr = topPtr->getNext();					// update PTR
+	delete nodeToDeletePtr;						// free memory
+	return true;
 }
 
 template<class ItemType>
