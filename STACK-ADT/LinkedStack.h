@@ -40,7 +40,7 @@ inline LinkedStack<ItemType>::~LinkedStack()
 template<class ItemType>
 inline bool LinkedStack<ItemType>::isEmpty() const
 {
-	return false;
+	return (topPtr == nullptr);
 }
 
 template<class ItemType>
