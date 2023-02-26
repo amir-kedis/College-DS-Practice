@@ -18,6 +18,7 @@ public:
 
 template<class ItemType, int MAX_SIZE>
 inline ArrayStack<ItemType, MAX_SIZE>::ArrayStack()
+	:top(-1)
 {
 }
 
