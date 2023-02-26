@@ -15,3 +15,31 @@ public:
 	ItemType peek() const;
 };
 
+template<class ItemType, int MAX_SIZE>
+inline ArrayStack<ItemType, MAX_SIZE>::ArrayStack()
+{
+}
+
+template<class ItemType, int MAX_SIZE>
+inline bool ArrayStack<ItemType, MAX_SIZE>::isEmpty() const
+{
+	return false;
+}
+
+template<class ItemType, int MAX_SIZE>
+inline bool ArrayStack<ItemType, MAX_SIZE>::push(const ItemType& newEntry)
+{
+	return false;
+}
+
+template<class ItemType, int MAX_SIZE>
+inline bool ArrayStack<ItemType, MAX_SIZE>::pop()
+{
+	return false;
+}
+
+template<class ItemType, int MAX_SIZE>
+inline ItemType ArrayStack<ItemType, MAX_SIZE>::peek() const
+{
+	return ItemType();
+}
