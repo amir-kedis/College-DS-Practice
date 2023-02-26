@@ -12,6 +12,7 @@ public:
 	bool isEmpty() const;
 	bool push(const ItemType& newEntry);
 	bool pop();
+	std::vector<ItemType> toVector() const;
 	ItemType peek() const;
 };
 
@@ -36,6 +37,12 @@ template<class ItemType, int MAX_SIZE>
 inline bool ArrayStack<ItemType, MAX_SIZE>::pop()
 {
 	return false;
+}
+
+template<class ItemType, int MAX_SIZE>
+inline std::vector<ItemType> ArrayStack<ItemType, MAX_SIZE>::toVector() const
+{
+	return std::vector<ItemType>();
 }
 
 template<class ItemType, int MAX_SIZE>

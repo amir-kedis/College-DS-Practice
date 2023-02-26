@@ -1,4 +1,7 @@
 #pragma once
+
+#include <vector>
+
 template <class ItemType>
 class StackInterface
 {
@@ -35,5 +38,10 @@ public:
 	the stack is unchanged.
 	@return The top of the stack. */
 	virtual ItemType peek() const = 0;
+
+	/** Empties and then fills a given vector with all entries that
+	are in this bag.
+	@return A vector containing all the entries in the bag. */
+	virtual std::vector<ItemType> toVector() const = 0;
 };
 
