@@ -6,6 +6,24 @@
 
 using namespace std;
 
+void displayStack(StackInterface<string>* stackPtr)
+{
+
+
+	vector<string> stackItems = stackPtr->toVector();
+	int numberOfEntries = (int)stackItems.size();
+
+	cout << "The Stack Contains " << numberOfEntries << " items:\n";
+
+	for (size_t i = 0; i < numberOfEntries; i++)
+	{
+		cout << stackItems[i] << " ";
+	}
+
+	cout << "\n\n";
+}
+
+
 int main()
 {
 	StackInterface<string>* stackPtr;
@@ -17,9 +35,8 @@ int main()
 
 	if (userChoice == 'A')
 	{
-		// stackPtr = new ArrayStack<string>();
+		stackPtr = new ArrayStack<string>();
 		cout << "Testing the Array-Based Stack:\n";
-
 	}
 	else {
 		// stackPtr = new LinkedStack<string>();

@@ -1,6 +1,6 @@
 #pragma once
 #include "StackInterface.h"
-template <class ItemType, int MAX_SIZE>
+template <class ItemType, int MAX_SIZE = 1000>
 class ArrayStack :
 	public StackInterface<ItemType>
 {
