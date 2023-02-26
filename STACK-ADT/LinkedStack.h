@@ -30,6 +30,20 @@ inline LinkedStack<ItemType>::LinkedStack()
 template<class ItemType>
 inline LinkedStack<ItemType>::LinkedStack(const LinkedStack<ItemType>& aStack)
 {
+	Node<ItemType>* originChainPtr = aStack.topPtr;
+
+	if (originChainPtr == nullptr)
+	{
+		topPtr = nullptr;
+		return;
+	}
+
+	/* This implementation is not similar to the one in the Slides/Book*/
+	while (originChainPtr != nullptr)
+	{
+		push(originChainPtr->getItem());
+		originChainPtr = originChainPtr->getNext();
+	}
 }
 
 template<class ItemType>
