@@ -2,6 +2,16 @@
 template <class ItemType>
 class StackInterface
 {
+	/// =======================================
+	/// STACK ADT Axioms (Rules)
+	/// (new Stack()).isEmpty() = true
+	/// (new Stack()).pop() = false
+	/// (new Stack()).peek() = error
+	/// (aStack.push(item)).isEmpty() = false
+	/// (aStack.push(item)).peek() = item
+	/// (aStack.push(item)).pop() = true
+	/// =======================================
+
 public:
 	/** Sees whether this stack is empty.
 	@return True if the stack is empty, or false if not. */
