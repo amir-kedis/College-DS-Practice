@@ -3,6 +3,7 @@
 
 #include "StackInterface.h"
 #include "ArrayStack.h"
+#include "LinkedStack.h"
 
 using namespace std;
 
@@ -68,7 +69,7 @@ int main()
 		cout << "Testing the Array-Based Stack:\n";
 	}
 	else {
-		stackPtr = new ArrayStack<string>();
+		stackPtr = new LinkedStack<string>();
 		cout << "Testing the LinkedList-Based Stack:\n";
 	}
 

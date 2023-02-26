@@ -130,8 +130,9 @@
     <ClCompile Include="testing-stack.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\BAG-ADT\Node.h" />
     <ClInclude Include="ArrayStack.h" />
+    <ClInclude Include="LinkedStack.h" />
+    <ClInclude Include="Node.h" />
     <ClInclude Include="StackInterface.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

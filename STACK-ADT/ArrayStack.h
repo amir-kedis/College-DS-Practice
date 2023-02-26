@@ -14,8 +14,8 @@ public:
 	bool isEmpty() const;
 	bool push(const ItemType& newEntry);
 	bool pop();
-	std::vector<ItemType> toVector() const;
 	ItemType peek() const;
+	std::vector<ItemType> toVector() const;
 };
 
 template<class ItemType, int MAX_SIZE>
