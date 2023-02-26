@@ -77,7 +77,7 @@ inline std::vector<ItemType> ArrayStack<ItemType, MAX_SIZE>::toVector() const
 		return stackContents;
 	}
 
-	for (size_t i = 0; i < top; i++)
+	for (int i = 0; i < top + 1; i++)
 	{
 		stackContents.push_back(items[i]);
 	}
