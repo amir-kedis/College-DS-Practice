@@ -25,7 +25,7 @@ inline ArrayStack<ItemType, MAX_SIZE>::ArrayStack()
 template<class ItemType, int MAX_SIZE>
 inline bool ArrayStack<ItemType, MAX_SIZE>::isEmpty() const
 {
-	return false;
+	return (isEmpty <= -1);
 }
 
 template<class ItemType, int MAX_SIZE>
