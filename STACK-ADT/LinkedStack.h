@@ -58,7 +58,7 @@ inline bool LinkedStack<ItemType>::pop()
 template<class ItemType>
 inline ItemType LinkedStack<ItemType>::peek() const
 {
-	return ItemType();
+	return topPtr->getItem();  // didn't check for empty because it's in the specification as a @pre
 }
 
 template<class ItemType>
