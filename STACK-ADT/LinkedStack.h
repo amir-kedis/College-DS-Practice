@@ -35,6 +35,10 @@ inline LinkedStack<ItemType>::LinkedStack(const LinkedStack<ItemType>& aStack)
 template<class ItemType>
 inline LinkedStack<ItemType>::~LinkedStack()
 {
+	while (!isEmpty())
+	{
+		pop();
+	}
 }
 
 template<class ItemType>
