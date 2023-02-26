@@ -7,6 +7,8 @@ class ArrayStack :
 private:
 	ItemType	items[MAX_SIZE];
 	int			top;
+
+	bool isFull() const;
 public:
 	ArrayStack();
 	bool isEmpty() const;
@@ -17,6 +19,12 @@ public:
 };
 
 template<class ItemType, int MAX_SIZE>
+inline bool ArrayStack<ItemType, MAX_SIZE>::isFull() const
+{
+	return top == MAX_SIZE - 1;
+}
+
+template<class ItemType, int MAX_SIZE>
 inline ArrayStack<ItemType, MAX_SIZE>::ArrayStack()
 	:top(-1)
 {
@@ -25,7 +33,7 @@ inline ArrayStack<ItemType, MAX_SIZE>::ArrayStack()
 template<class ItemType, int MAX_SIZE>
 inline bool ArrayStack<ItemType, MAX_SIZE>::isEmpty() const
 {
-	return (top <= -1);
+	return (top < 0);
 }
 
 template<class ItemType, int MAX_SIZE>
