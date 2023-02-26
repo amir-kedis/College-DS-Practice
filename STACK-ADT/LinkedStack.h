@@ -64,5 +64,19 @@ inline ItemType LinkedStack<ItemType>::peek() const
 template<class ItemType>
 inline std::vector<ItemType> LinkedStack<ItemType>::toVector() const
 {
-	return std::vector<ItemType>();
+	std::vector<ItemType> stackContents;
+
+	if (isEmpty())
+	{
+		return stackContents;
+	}
+
+	Node<ItemType>* curPtr = topPtr;
+	while (curPtr)
+	{
+		stackContents.push_back(curPtr->getItem());
+		curPtr = curPtr->getNext();
+	}
+
+	return stackContents;
 }
