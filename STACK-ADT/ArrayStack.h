@@ -64,7 +64,7 @@ inline bool ArrayStack<ItemType, MAX_SIZE>::pop()
 template<class ItemType, int MAX_SIZE>
 inline ItemType ArrayStack<ItemType, MAX_SIZE>::peek() const
 {
-	return ItemType();
+	return items[top]; // didn't check for empty because it's in the specification as a @pre
 }
 
 template<class ItemType, int MAX_SIZE>
