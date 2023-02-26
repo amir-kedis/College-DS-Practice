@@ -25,7 +25,7 @@ inline ArrayStack<ItemType, MAX_SIZE>::ArrayStack()
 template<class ItemType, int MAX_SIZE>
 inline bool ArrayStack<ItemType, MAX_SIZE>::isEmpty() const
 {
-	return (isEmpty <= -1);
+	return (top <= -1);
 }
 
 template<class ItemType, int MAX_SIZE>
@@ -41,13 +41,25 @@ inline bool ArrayStack<ItemType, MAX_SIZE>::pop()
 }
 
 template<class ItemType, int MAX_SIZE>
-inline std::vector<ItemType> ArrayStack<ItemType, MAX_SIZE>::toVector() const
-{
-	return std::vector<ItemType>();
-}
-
-template<class ItemType, int MAX_SIZE>
 inline ItemType ArrayStack<ItemType, MAX_SIZE>::peek() const
 {
 	return ItemType();
+}
+
+template<class ItemType, int MAX_SIZE>
+inline std::vector<ItemType> ArrayStack<ItemType, MAX_SIZE>::toVector() const
+{
+	std::vector<ItemType> stackContents;
+
+	if (isEmpty())
+	{
+		return stackContents;
+	}
+
+	for (size_t i = 0; i < top; i++)
+	{
+		stackContents.push_back(items[i]);
+	}
+
+	return stackContents;
 }
