@@ -55,5 +55,6 @@ void queueTester(QueueInterface<string>* queuePtr)
 	/// TESTING toVector
 	displayQueue(queuePtr);
 
-
+	/// TESTING isEmpty
+	cout << "isEmpty returns: " << queuePtr->isEmpty() << " should return 1 (true)\n";
 }

@@ -32,7 +32,7 @@ inline LinkedQueue<ItemType>::~LinkedQueue()
 template<class ItemType>
 inline bool LinkedQueue<ItemType>::isEmpty() const
 {
-	return false;
+	return (front == nullptr);
 }
 
 template<class ItemType>
