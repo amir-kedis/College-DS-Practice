@@ -37,8 +37,23 @@ int main()
 
 void displayQueue(QueueInterface<string>* queuePtr)
 {
+	vector<string> queueItems = queuePtr->toVector();
+	int numberOfEntries = (int)queueItems.size();
+
+	cout << "The Queue Contains " << numberOfEntries << " items:\n";
+
+	for (size_t i = 0; i < numberOfEntries; i++)
+	{
+		cout << queueItems[i] << " ";
+	}
+
+	cout << "\n\n";
 }
 
 void queueTester(QueueInterface<string>* queuePtr)
 {
+	/// TESTING toVector
+	displayQueue(queuePtr);
+
+
 }

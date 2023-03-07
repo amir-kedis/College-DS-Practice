@@ -132,6 +132,7 @@
   <ItemGroup>
     <ClInclude Include="ArrayQueue.h" />
     <ClInclude Include="LinkedQueue.h" />
+    <ClInclude Include="Node.h" />
     <ClInclude Include="QueueInterface.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
