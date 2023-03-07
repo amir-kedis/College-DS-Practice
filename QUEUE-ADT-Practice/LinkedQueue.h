@@ -61,13 +61,35 @@ inline bool LinkedQueue<ItemType>::enqueue(const ItemType& newEntry)
 template<class ItemType>
 inline bool LinkedQueue<ItemType>::dequeue()
 {
-	return false;
+	if (isEmpty())
+	{
+		return false;
+	}
+
+	Node<ItemType>* itemToBeDeleted = front;
+
+	if (front == rear) // one item in queue
+	{
+		front = nullptr;
+		rear = nullptr;
+	}
+	else
+	{
+		front = front->getNext(); // advance front
+	}
+
+	delete itemToBeDeleted; // delete item
+	return true;
 }
 
 template<class ItemType>
 inline ItemType LinkedQueue<ItemType>::peekFront() const
 {
-	return ItemType();
+	if (!front)
+	{
+		return NULL;
+	}
+	return front->getItem();
 }
 
 template<class ItemType>

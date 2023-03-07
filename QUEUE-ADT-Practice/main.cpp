@@ -72,7 +72,14 @@ void queueTester(QueueInterface<string>* queuePtr)
 	{
 		queuePtr->enqueue(items[i]);
 	}
+
 	displayQueue(queuePtr);
 	cout << "queue should contain [ITEM 1 ITEM 2 ITEM 3 ITEM 4 ITEM 5 ITEM 6]\n\n";;
 
+	/// TESTING dequeue() and peekFront()
+	cout << "peekFront() returns: " << queuePtr->peekFront() << " should return \"ITEM 1\"\n";
+	cout << "dequeue() returns: " << queuePtr->dequeue() << " should return 1 (true)\n";
+	cout << "peekFront() returns: " << queuePtr->peekFront() << " should return \"ITEM 2\"\n";
+	cout << "enqueue(\"ITEM 7\") returns: " << queuePtr->enqueue("ITEM 7") << " should return 1 (true)\n";
+	displayQueue(queuePtr);
 }
