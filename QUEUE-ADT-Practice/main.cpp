@@ -44,17 +44,35 @@ void displayQueue(QueueInterface<string>* queuePtr)
 
 	for (size_t i = 0; i < numberOfEntries; i++)
 	{
-		cout << queueItems[i] << " ";
+		cout << "\"" << queueItems[i] << "\" ";
 	}
 
-	cout << "\n\n";
+	cout << "\n";
 }
 
 void queueTester(QueueInterface<string>* queuePtr)
 {
-	/// TESTING toVector
+	/// TESTING toVector()
 	displayQueue(queuePtr);
 
-	/// TESTING isEmpty
-	cout << "isEmpty returns: " << queuePtr->isEmpty() << " should return 1 (true)\n";
+	/// TESTING isEmpty()
+	cout << "isEmpty returns: " << queuePtr->isEmpty() << " should return 1 (true)\n\n";
+
+	/// TESTING enqueue()
+	vector<string> items = {
+		"ITEM 1",
+		"ITEM 2",
+		"ITEM 3",
+		"ITEM 4",
+		"ITEM 5",
+		"ITEM 6",
+	};
+
+	for (int i = 0; i < items.size(); i++)
+	{
+		queuePtr->enqueue(items[i]);
+	}
+	displayQueue(queuePtr);
+	cout << "queue should contain [ITEM 1 ITEM 2 ITEM 3 ITEM 4 ITEM 5 ITEM 6]\n\n";;
+
 }

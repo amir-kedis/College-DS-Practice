@@ -38,7 +38,24 @@ inline bool LinkedQueue<ItemType>::isEmpty() const
 template<class ItemType>
 inline bool LinkedQueue<ItemType>::enqueue(const ItemType& newEntry)
 {
-	return false;
+	// create a new element and make it point to null
+	Node<ItemType>* newNodePtr = new Node<ItemType>(newEntry, nullptr);
+
+	if (isEmpty())
+	{
+		// if first element make front point to it
+		front = newNodePtr;
+	}
+	else
+	{
+		// add new element to the chain
+		rear->setNext(newNodePtr);
+	}
+
+	// updates last PTR to point to new element
+	rear = newNodePtr;
+
+	return true;
 }
 
 template<class ItemType>
