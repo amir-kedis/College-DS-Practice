@@ -1,5 +1,7 @@
 #include <iostream>
 #include "QueueInterface.h"
+#include "ArrayQueue.h"
+#include "LinkedQueue.h"
 
 using namespace std;
 
@@ -16,15 +18,15 @@ int main()
 
 	if (userChoice == 'A')
 	{
-		// queuePtr = new ArrayQueue<string>();
-		cout << "Testing the Array-Based Stack:\n";
+		queuePtr = new ArrayQueue<string>();
+		cout << "Testing the Array-Based Queue:\n";
 	}
 	else {
-		// queuePtr = new LinkedQueue<string>();
-		cout << "Testing the LinkedList-Based Stack:\n";
+		queuePtr = new LinkedQueue<string>();
+		cout << "Testing the LinkedList-Based Queue:\n";
 	}
 
-	cout << "The initial stack is empty.\n\n";
+	cout << "The initial Queue is empty.\n\n";
 
 	// starts the tests
 	queueTester(queuePtr);

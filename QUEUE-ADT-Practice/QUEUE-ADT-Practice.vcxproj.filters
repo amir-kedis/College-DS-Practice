@@ -23,5 +23,11 @@
     <ClInclude Include="QueueInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ArrayQueue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedQueue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
