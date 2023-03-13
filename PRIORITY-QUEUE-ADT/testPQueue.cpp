@@ -41,7 +41,11 @@ void displayPQueue(PriorityQueue<int>& pQueue)
 	{
 		cout << "[ " << qContents[i] << " ] => ";
 	}
-	outL("");
+	if (qContents.size() != 0)
+	{
+		outL("should be sorted");
+	}
+
 }
 
 void pQueueTester(PriorityQueue<int>& pQ)
@@ -53,7 +57,17 @@ void pQueueTester(PriorityQueue<int>& pQ)
 	displayPQueue(pQ);
 
 	/// TEST IsEmpty()
-	cout << "IsEmpty returns " << pQ.IsEmpty() << " should return 1\n";
+	cout << "IsEmpty() returns " << pQ.IsEmpty() << " should return 1\n\n";
+
+	SetConsoleTextAttribute(col, 2); // sets color
+	/// TEST enqueue()
+	cout << "Enqueue(4) returns " << pQ.Enqueue(4) << " should return 1\n";
+	cout << "Enqueue(3) returns " << pQ.Enqueue(3) << " should return 1\n";
+	cout << "Enqueue(1) returns " << pQ.Enqueue(9) << " should return 1\n";
+	cout << "Enqueue(1) returns " << pQ.Enqueue(1) << " should return 1\n";
+	cout << "Enqueue(5) returns " << pQ.Enqueue(5) << " should return 1\n";
+	displayPQueue(pQ);
+
 
 	SetConsoleTextAttribute(col, 8); // sets color back to gray
 }

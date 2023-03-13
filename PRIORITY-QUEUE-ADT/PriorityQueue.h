@@ -10,8 +10,8 @@ private:
 	Node<ItemType>* head;
 	int queueCount;
 
-	ItemType getNodeBefore(const ItemType& anEntry) const;
-	ItemType getNodeAt(int position) const;
+	Node<ItemType>* getNodeBefore(const ItemType& anEntry) const;
+	Node<ItemType>* getNodeAt(int position) const;
 	Node<ItemType>* CopyChain(Node<ItemType>* originChainPtr);
 public:
 	PriorityQueue();
@@ -26,10 +26,10 @@ public:
 };
 
 template<class ItemType>
-inline ItemType PriorityQueue<ItemType>::getNodeBefore(const ItemType& anEntry) const
+inline Node<ItemType>* PriorityQueue<ItemType>::getNodeBefore(const ItemType& anEntry) const
 {
-	Node<ItemType>* curPtr = Head;
-	Node<ItemType>* prevPtr;
+	Node<ItemType>* curPtr = head;
+	Node<ItemType>* prevPtr = nullptr;
 
 	while (curPtr && (anEntry > curPtr->getItem()))
 	{
@@ -40,7 +40,7 @@ inline ItemType PriorityQueue<ItemType>::getNodeBefore(const ItemType& anEntry) 
 }
 
 template<class ItemType>
-inline ItemType PriorityQueue<ItemType>::getNodeAt(int position) const
+inline Node<ItemType>* PriorityQueue<ItemType>::getNodeAt(int position) const
 {
 	return ItemType();
 }
@@ -77,7 +77,22 @@ inline int PriorityQueue<ItemType>::GetSize() const
 template<class ItemType>
 inline bool PriorityQueue<ItemType>::Enqueue(const ItemType& anEntry)
 {
-	return false;
+	Node<ItemType>* newNodePtr = new Node<ItemType>(anEntry);
+	Node<ItemType>* prevPtr = getNodeBefore(anEntry);
+
+	if (IsEmpty() || prevPtr == nullptr)
+	{
+		newNodePtr->setNext(head);
+		head = newNodePtr;
+	}
+	else {
+		Node<ItemType>* afterPtr = prevPtr->getNext();
+		newNodePtr->setNext(afterPtr);
+		prevPtr->setNext(newNodePtr);
+	}
+
+	queueCount++;
+	return true;
 }
 
 template<class ItemType>
