@@ -57,7 +57,7 @@ inline PriorityQueue<ItemType>::PriorityQueue(const PriorityQueue& pQueue)
 template<class ItemType>
 inline bool PriorityQueue<ItemType>::IsEmpty() const
 {
-	return false;
+	return queueCount == 0;
 }
 
 template<class ItemType>
@@ -87,7 +87,19 @@ inline ItemType PriorityQueue<ItemType>::PeekFront() const
 template<class ItemType>
 inline std::vector<ItemType> PriorityQueue<ItemType>::toVector() const
 {
-	return std::vector<ItemType>();
+	std::vector<ItemType> queueContents;
+
+	if (IsEmpty())
+		return queueContents;
+
+	Node<ItemType>* curPtr = head;
+	while (curPtr != nullptr)
+	{
+		queueContents.push_back(curPtr->getItem());
+		curPtr = curPtr->getNext();
+	}
+
+	return queueContents;
 }
 
 template<class ItemType>
