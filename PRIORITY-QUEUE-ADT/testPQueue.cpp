@@ -7,6 +7,8 @@ using namespace std;
 void outL(string msg);
 void displayPQueue(PriorityQueue<int>& pQueue);
 
+void pQueueTester(PriorityQueue<int>& pQ);
+
 
 int main()
 {
@@ -17,7 +19,8 @@ int main()
 
 	outL("Starting the test....");
 
-
+	PriorityQueue<int> pQ;
+	pQueueTester(pQ);
 
 	return 0;
 }
@@ -38,5 +41,10 @@ void displayPQueue(const PriorityQueue<int>& pQueue)
 		cout << "[ " << qContents[i] << " ] => ";
 	}
 	outL("");
+}
+
+void pQueueTester(PriorityQueue<int>& pQ)
+{
+
 }
 
