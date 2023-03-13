@@ -56,7 +56,7 @@ public:
  @param visit A client-defined function that performs an operation on
  or with the data in each visited node. */
 	virtual void preorderTraverse(void visit(ItemType&)) const = 0;
-	virtual void inordedTraverse(void visit(ItemType&)) const = 0;
+	virtual void inorderTraverse(void visit(ItemType&)) const = 0;
 	virtual void postorderTraverse(void visit(ItemType&)) const = 0;
 };
 
