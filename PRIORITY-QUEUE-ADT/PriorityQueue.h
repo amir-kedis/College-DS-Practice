@@ -1,6 +1,7 @@
 #pragma once
 #include "PriorityQueueInterface.h"
 #include "Node.h"
+#include <vector>
 template <class ItemType>
 class PriorityQueue :
 	public PriorityQueueInterface<ItemType>
@@ -20,6 +21,7 @@ public:
 	bool Enqueue(const ItemType& anEntry);
 	bool Dequeue();
 	ItemType PeekFront() const;
+	std::vector<ItemType> toVector() const;
 	virtual ~PriorityQueue();
 };
 
@@ -43,6 +45,7 @@ inline Node<ItemType>* PriorityQueue<ItemType>::CopyChain(Node<ItemType>* origin
 
 template<class ItemType>
 inline PriorityQueue<ItemType>::PriorityQueue()
+	:queueCount(0), head(nullptr)
 {
 }
 
@@ -79,6 +82,12 @@ template<class ItemType>
 inline ItemType PriorityQueue<ItemType>::PeekFront() const
 {
 	return ItemType();
+}
+
+template<class ItemType>
+inline std::vector<ItemType> PriorityQueue<ItemType>::toVector() const
+{
+	return std::vector<ItemType>();
 }
 
 template<class ItemType>
