@@ -1,10 +1,17 @@
 #pragma once
 #include "PriorityQueueInterface.h"
+#include "Node.h"
 template <class ItemType>
 class PriorityQueue :
 	public PriorityQueueInterface<ItemType>
 {
+private:
+	Node<ItemType>* head;
+	int queueCount;
 
+	ItemType getNodeBefore(const ItemType& anEntry) const;
+	ItemType getNodeAt(int position) const;
+	Node<ItemType>* CopyChain(Node<ItemType>* originChainPtr);
 public:
 	PriorityQueue();
 	PriorityQueue(const PriorityQueue& pQueue);
@@ -15,6 +22,24 @@ public:
 	ItemType PeekFront() const;
 	virtual ~PriorityQueue();
 };
+
+template<class ItemType>
+inline ItemType PriorityQueue<ItemType>::getNodeBefore(const ItemType& anEntry) const
+{
+	return ItemType();
+}
+
+template<class ItemType>
+inline ItemType PriorityQueue<ItemType>::getNodeAt(int position) const
+{
+	return ItemType();
+}
+
+template<class ItemType>
+inline Node<ItemType>* PriorityQueue<ItemType>::CopyChain(Node<ItemType>* originChainPtr)
+{
+	return nullptr;
+}
 
 template<class ItemType>
 inline PriorityQueue<ItemType>::PriorityQueue()
