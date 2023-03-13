@@ -28,7 +28,15 @@ public:
 template<class ItemType>
 inline ItemType PriorityQueue<ItemType>::getNodeBefore(const ItemType& anEntry) const
 {
-	return ItemType();
+	Node<ItemType>* curPtr = Head;
+	Node<ItemType>* prevPtr;
+
+	while (curPtr && (anEntry > curPtr->getItem()))
+	{
+		prevPtr = curPtr;
+		curPtr = curPtr->getNext();
+	}
+	return prevPtr;
 }
 
 template<class ItemType>

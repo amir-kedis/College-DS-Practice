@@ -1,4 +1,5 @@
 #include <iostream>
+#include <windows.h> 
 #include "PriorityQueueInterface.h"
 #include "PriorityQueue.h"
 
@@ -30,11 +31,11 @@ void outL(string msg)
 	cout << msg << "\n";
 }
 
-void displayPQueue(const PriorityQueue<int>& pQueue)
+void displayPQueue(PriorityQueue<int>& pQueue)
 {
 	vector<int> qContents = pQueue.toVector();
 
-	cout << "Queue contains [" << qContents.size() << "]: " << "\n";
+	cout << "Queue contains [" << qContents.size() << "] items: " << "\n";
 
 	for (size_t i = 0; i < qContents.size(); i++)
 	{
@@ -45,6 +46,15 @@ void displayPQueue(const PriorityQueue<int>& pQueue)
 
 void pQueueTester(PriorityQueue<int>& pQ)
 {
+	HANDLE col = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(col, 9); // sets color to Bright Blue
+	/// START
+	outL("At the start:...");
+	displayPQueue(pQ);
 
+	/// TEST IsEmpty()
+	cout << "IsEmpty returns " << pQ.IsEmpty() << " should return 1\n";
+
+	SetConsoleTextAttribute(col, 8); // sets color back to gray
 }
 
