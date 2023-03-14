@@ -1,7 +1,8 @@
 #pragma once
 
 #include "BinaryTreeInterface.h"
-#include "BinaryNode.h" 
+#include "BinaryNode.h"
+
 
 template<class ItemType>
 class BinaryNodeTree : public BinaryTreeInterface<ItemType>
@@ -85,10 +86,6 @@ public:
 	void inorderTraverse(void visit(ItemType&)) const;
 	void postorderTraverse(void visit(ItemType&)) const;
 
-	//------------------------------------------------------------
-	// Overloaded Operator Section.
-	//------------------------------------------------------------
-	BinaryNodeTree& operator=(const BinaryNodeTree& rightHandSide);
 };
 
 template<class ItemType>
@@ -155,31 +152,205 @@ inline void BinaryNodeTree<ItemType>::
 		destroyTree(subTreePtr->getRightChildPtr());
 		delete subTreePtr;
 	}
+	rootPtr = nullptr;
 }
+
+template<class ItemType>
+inline int BinaryNodeTree<ItemType>::
+						  getHeightHelper(BinaryNode<ItemType>* subTreePtr) const
+{
+	if (subTreePtr == nullptr)
+	{
+		return 0;
+	}
+
+	return 1 + std::max(getHeightHelper(subTreePtr->getLeftChildPtr()),
+				   getHeightHelper(subTreePtr->getRightChildPtr()));
+}
+
+template<class ItemType>
+inline int BinaryNodeTree<ItemType>::
+						  getNumberOfNodesHelper(BinaryNode<ItemType>* subTreePtr) const
+{
+	if (subTreePtr == nullptr)
+	{
+		return 0;
+	}
+
+	return 1 + getNumberOfNodesHelper(subTreePtr->getLeftChildPtr())
+			 + getNumberOfNodesHelper(subTreePtr->getRightChildPtr());
+}
+
+template<class ItemType>
+inline BinaryNode<ItemType>* BinaryNodeTree<ItemType>::
+							 balancedAdd(BinaryNode<ItemType>* subTreePtr,
+								         BinaryNode<ItemType>* newNodePtr)
+{
+	if (subTreePtr == nullptr)
+		return newNodePtr;
+	else
+	{
+		BinaryNode<ItemType>* leftPtr = subTreePtr->getLeftChildPtr();
+		BinaryNode<ItemType>* rightPtr = subTreePtr->getRightChildPtr();
+		
+		if (getHeightHelper(leftPtr) > getHeightHelper(rightPtr))
+		{
+			rightPtr = balancedAdd(rightPtr, newNodePtr);
+			subTreePtr->setRightChildPtr(rightPtr);
+		}
+		else
+		{
+			leftPtr = balancedAdd(leftPtr, newNodePtr);
+			subTreePtr->setLeftChildPtr(leftPtr);
+		}
+	}
+
+	return subTreePtr;
+}
+
+template<class ItemType>
+inline BinaryNode<ItemType>* BinaryNodeTree<ItemType>::
+							 removeValue(BinaryNode<ItemType>* subTreePtr,
+										 const ItemType target, bool& success)
+{
+	return nullptr;
+}
+
+template<class ItemType>
+inline BinaryNode<ItemType>* BinaryNodeTree<ItemType>::
+							 moveValuesUpTree(BinaryNode<ItemType>* subTreePtr)
+{
+	if (subTreePtr == nullptr)
+	{
+		return nullptr;
+	}
+
+	BinaryNode<ItemType>* leftPtr = subTreePtr->getLeftChildPtr();
+	BinaryNode<ItemType>* rightPtr = subTreePtr->getRightChildPtr();
+
+	if (leftPtr != nullptr)
+	{
+		ItemType theItem = leftPtr->getItem();
+		subTreePtr->setItem(theItem);
+		BinaryNode<ItemType>* temp = moveValuesUpTree(leftPtr);
+		if (temp == nullptr)
+			subTreePtr->setLeftChildPtr(nullptr);
+		return subTreePtr;
+	}
+	else if (rightPtr != nullptr)
+	{
+		ItemType theItem = rightPtr->getItem();
+		subTreePtr->setItem(theItem);
+		BinaryNode<ItemType>* temp = moveValuesUpTree(rightPtr);
+		if (temp == nullptr)
+			subTreePtr->setRightChildPtr(nullptr);
+		return subTreePtr;
+	}
+	else
+	{
+		delete subTreePtr;
+		subTreePtr = nullptr;
+		return subTreePtr;
+	}
+}
+
+template<class ItemType>
+inline BinaryNode<ItemType>* BinaryNodeTree<ItemType>::
+							 findNode(BinaryNode<ItemType>* treePtr,
+						              const ItemType& target,
+							          bool& success) const
+{
+	BinaryNode<ItemType>* newPtr = nullptr;
+
+	if (treePtr != nullptr)
+	{
+		if (treePtr->getItem() == target)
+		{
+			success = true;
+			return treePtr;
+		}
+		newPtr = findNode(treePtr->getLeftChildPtr(), target, success);
+		if (newPtr != nullptr)
+		{
+			success = true;
+			return newPtr;
+		}
+
+		newPtr = findNode(treePtr->getRightChildPtr(), target, success);
+	}
+
+	if (newPtr == nullptr)
+		success = false;
+	else
+		success = true;
+
+	return newPtr;
+}
+
+template<class ItemType>
+inline void BinaryNodeTree<ItemType>::preorder(void visit(ItemType&),
+									  BinaryNode<ItemType>* treePtr) const
+{
+	if (treePtr != nullptr)
+	{
+		ItemType theItem = treePtr->getItem();
+		visit(theItem);
+		preorder(visit, treePtr->getLeftChildPtr());
+		preorder(visit, treePtr->getRightChildPtr());
+	}
+}
+
+template<class ItemType>
+inline void BinaryNodeTree<ItemType>::inorder(void visit(ItemType&),
+									  BinaryNode<ItemType>* treePtr) const
+{
+	if (treePtr != nullptr)
+	{
+		inorder(visit, treePtr->getLeftChildPtr());
+		ItemType theItem = treePtr->getItem();
+		visit(theItem);
+		inorder(visit, treePtr->getRightChildPtr());
+	}
+}
+
+template<class ItemType>
+inline void BinaryNodeTree<ItemType>::postorder(void visit(ItemType&),
+	BinaryNode<ItemType>* treePtr) const
+{
+	if (treePtr != nullptr)
+	{
+		postorder(visit, treePtr->getLeftChildPtr());
+		postorder(visit, treePtr->getRightChildPtr());
+		ItemType theItem = treePtr->getItem();
+		visit(theItem);
+	}
+}
+
 
 template<class ItemType>
 inline bool BinaryNodeTree<ItemType>::isEmpty() const
 {
-	return false;
+	return rootPtr == nullptr;
 }
 
 template<class ItemType>
 inline int BinaryNodeTree<ItemType>::getHeight() const
 {
-	return 0;
+	return getHeightHelper(rootPtr);
 }
 
 
 template<class ItemType>
 inline int BinaryNodeTree<ItemType>::getNumberOfNodes() const
 {
-	return 0;
+	return getNumberOfNodesHelper(rootPtr);
 }
 
 
 template<class ItemType>
 inline ItemType BinaryNodeTree<ItemType>::getRootData() const
 {
+	// We must check first if Tree isEmpty before calling this function
 	return rootPtr->getItem();
 }
 
@@ -187,27 +358,38 @@ inline ItemType BinaryNodeTree<ItemType>::getRootData() const
 template<class ItemType>
 inline void BinaryNodeTree<ItemType>::setRootData(const ItemType& newData)
 {
+	if (rootPtr == nullptr)
+	{
+		rootPtr = new BinaryNode<ItemType>(newData, nullptr, nullptr);
+		return;
+	}
 
+	rootPtr->setItem(newData);
 }
 
 
 template<class ItemType>
 inline bool BinaryNodeTree<ItemType>::add(const ItemType& newData)
 {
-	return false;
+	BinaryNode<ItemType>* newNodePtr = new BinaryNode<ItemType>(newData);
+	rootPtr = balancedAdd(rootPtr, newNodePtr);
+
+	return true;
 }
 
 
 template<class ItemType>
 inline bool BinaryNodeTree<ItemType>::remove(const ItemType& data)
 {
-	return false;
+	bool success = false;
+	removeValue(rootPtr, data, success);
+	return success;
 }
 
 template<class ItemType>
 inline void BinaryNodeTree<ItemType>::clear()
 {
-
+	destroyTree(rootPtr);
 }
 
 
@@ -215,7 +397,9 @@ template<class ItemType>
 inline bool BinaryNodeTree<ItemType>::
 						   contains(const ItemType& anEntry) const
 {
-	return false;
+	bool isFound = false;
+	findNode(rootPtr, anEntry, isFound);
+	return isFound;
 }
 
 
@@ -223,7 +407,7 @@ template<class ItemType>
 inline void BinaryNodeTree<ItemType>::
 						   preorderTraverse(void visit(ItemType&)) const
 {
-
+	preorder(visit, rootPtr);
 }
 
 
@@ -231,12 +415,12 @@ template<class ItemType>
 inline void BinaryNodeTree<ItemType>::
 					       inorderTraverse(void visit(ItemType&)) const
 {
-
+	inorder(visit, rootPtr);
 }
 
 template<class ItemType>
 inline void BinaryNodeTree<ItemType>::
 						   postorderTraverse(void visit(ItemType&)) const
 {
-
+	postorder(visit, rootPtr);
 }
