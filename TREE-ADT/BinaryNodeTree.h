@@ -2,7 +2,8 @@
 
 #include "BinaryTreeInterface.h"
 #include "BinaryNode.h"
-
+#include <vector>
+using namespace std;
 
 template<class ItemType>
 class BinaryNodeTree : public BinaryTreeInterface<ItemType>
@@ -40,12 +41,16 @@ protected:
 	BinaryNode<ItemType>* findNode(BinaryNode<ItemType>* treePtr,
 		const ItemType& target,
 		bool& success) const;
+
+	BinaryNode<ItemType>* getParent(BinaryNode<ItemType>* childPtr, BinaryNode<ItemType>* parentPtr, bool &success);
 	
 	// Copies the tree rooted at treePtr and returns a pointer to
 	// the copy.
 	BinaryNode<ItemType>*
 		copyTree(const BinaryNode<ItemType>* treePtr) const;
 	
+	void toVectorHelper(BinaryNode<ItemType>* treePtr, vector<ItemType>& treeVector) const;
+
 	// Recursive traversal helper methods:
 	void preorder(void visit(ItemType&),
 		BinaryNode<ItemType>* treePtr) const;
@@ -78,7 +83,7 @@ public:
 	void clear();
 
 	bool contains(const ItemType& anEntry) const;
-
+	vector<ItemType> toVector() const;
 	//------------------------------------------------------------
 	// Public Traversals Section.
 	//------------------------------------------------------------
@@ -213,7 +218,9 @@ inline BinaryNode<ItemType>* BinaryNodeTree<ItemType>::
 							 removeValue(BinaryNode<ItemType>* subTreePtr,
 										 const ItemType target, bool& success)
 {
-	return nullptr;
+	BinaryNode<ItemType>* temp = findNode(rootPtr, target, success);
+	temp = moveValuesUpTree(temp);
+	return temp;
 }
 
 template<class ItemType>
@@ -232,22 +239,25 @@ inline BinaryNode<ItemType>* BinaryNodeTree<ItemType>::
 	{
 		ItemType theItem = leftPtr->getItem();
 		subTreePtr->setItem(theItem);
-		BinaryNode<ItemType>* temp = moveValuesUpTree(leftPtr);
-		if (temp == nullptr)
-			subTreePtr->setLeftChildPtr(nullptr);
-		return subTreePtr;
+		return moveValuesUpTree(leftPtr);
 	}
 	else if (rightPtr != nullptr)
 	{
 		ItemType theItem = rightPtr->getItem();
 		subTreePtr->setItem(theItem);
-		BinaryNode<ItemType>* temp = moveValuesUpTree(rightPtr);
-		if (temp == nullptr)
-			subTreePtr->setRightChildPtr(nullptr);
-		return subTreePtr;
+		return moveValuesUpTree(rightPtr);
 	}
 	else
 	{
+		bool success = false;
+		BinaryNode<ItemType>* parent = getParent(subTreePtr, rootPtr, success);
+		if (parent != nullptr)
+		{
+			if (!success)
+				parent->setLeftChildPtr(nullptr);
+			else
+				parent->setRightChildPtr(nullptr);
+		}
 		delete subTreePtr;
 		subTreePtr = nullptr;
 		return subTreePtr;
@@ -285,6 +295,51 @@ inline BinaryNode<ItemType>* BinaryNodeTree<ItemType>::
 		success = true;
 
 	return newPtr;
+}
+
+template<class ItemType>
+inline BinaryNode<ItemType>* BinaryNodeTree<ItemType>::
+							 getParent(BinaryNode<ItemType>* childPtr,
+							           BinaryNode<ItemType>* parentPtr, bool &success)
+{
+	if (parentPtr == nullptr)
+		return nullptr;
+
+	if (parentPtr->getLeftChildPtr() == childPtr)
+	{
+		success = false;
+		return parentPtr;
+	}
+	else if (parentPtr->getRightChildPtr() == childPtr)
+	{
+		success = true;
+		return parentPtr;
+	}
+
+	BinaryNode<ItemType>* leftPtr = nullptr;
+	BinaryNode<ItemType>* rightPtr = nullptr;
+
+	if (childPtr != nullptr)
+	{
+		leftPtr = getParent(childPtr, parentPtr->getLeftChildPtr(), success);
+		if (leftPtr != nullptr)
+			return leftPtr;
+
+		rightPtr = getParent(childPtr, parentPtr->getRightChildPtr(), success);
+		return rightPtr;
+	}
+}
+
+template<class ItemType>
+inline void BinaryNodeTree<ItemType>::toVectorHelper(BinaryNode<ItemType>* treePtr, vector<ItemType>& treeVector) const
+{
+	if (treePtr != nullptr)
+	{
+		// Copy node
+		treeVector.push_back(treePtr->getItem());
+		toVectorHelper(treePtr->getLeftChildPtr(), treeVector);
+		toVectorHelper(treePtr->getRightChildPtr(), treeVector);
+	}
 }
 
 template<class ItemType>
@@ -400,6 +455,14 @@ inline bool BinaryNodeTree<ItemType>::
 	bool isFound = false;
 	findNode(rootPtr, anEntry, isFound);
 	return isFound;
+}
+
+template<class ItemType>
+inline vector<ItemType> BinaryNodeTree<ItemType>::toVector() const
+{
+	vector<ItemType> v1;
+	toVectorHelper(rootPtr, v1);
+	return v1;
 }
 
 

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <vector>
+
 template<class ItemType>
 class BinaryTreeInterface
 {
@@ -50,6 +52,10 @@ public:
  @param anEntry The entry to find.
  @return True if the entry occurs in the tree, or false if not. */
 	virtual bool contains(const ItemType& anEntry) const = 0;
+
+	/** Return a vector containing all the values of the tree
+	using preorder Traverse */
+	virtual std::vector<ItemType> toVector() const = 0;
 
 	/** Traverses this binary tree in preorder (inorder, postorder) and
  calls the function visit once for each node.
