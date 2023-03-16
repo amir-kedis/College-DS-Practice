@@ -42,13 +42,24 @@ inline Node<ItemType>* PriorityQueue<ItemType>::getNodeBefore(const ItemType& an
 template<class ItemType>
 inline Node<ItemType>* PriorityQueue<ItemType>::getNodeAt(int position) const
 {
-	return ItemType();
+	Node<ItemType>* curPtr = head;
+
+	for (int skip = 1; skip < position; skip++)
+		curPtr = curPtr->GetNext();
+
+	return curPtr;
 }
 
 template<class ItemType>
 inline Node<ItemType>* PriorityQueue<ItemType>::CopyChain(Node<ItemType>* originChainPtr)
 {
-	return nullptr;
+	Node<ItemType>* copiedChainPtr;
+	if (originChainPtr)
+	{
+		copiedChainPtr = new Node<ItemType>(originChainPtr->getItem());
+		copiedChainPtr->setNext(CopyChain(originChainPtr->setNext()));
+	}
+	return copiedChainPtr;
 }
 
 template<class ItemType>
@@ -60,6 +71,8 @@ inline PriorityQueue<ItemType>::PriorityQueue()
 template<class ItemType>
 inline PriorityQueue<ItemType>::PriorityQueue(const PriorityQueue& pQueue)
 {
+	head = CopyChain(pQueue);
+	queueCount = pQueue.queueCount;
 }
 
 template<class ItemType>
@@ -71,7 +84,7 @@ inline bool PriorityQueue<ItemType>::IsEmpty() const
 template<class ItemType>
 inline int PriorityQueue<ItemType>::GetSize() const
 {
-	return 0;
+	return queueCount;
 }
 
 template<class ItemType>
@@ -98,13 +111,23 @@ inline bool PriorityQueue<ItemType>::Enqueue(const ItemType& anEntry)
 template<class ItemType>
 inline bool PriorityQueue<ItemType>::Dequeue()
 {
-	return false;
+	if (IsEmpty())
+	{
+		return false;
+	}
+
+	Node<ItemType>* temp = head;
+	head = head->getNext();
+	delete temp;
+
+	queueCount--;
+	return true;
 }
 
 template<class ItemType>
 inline ItemType PriorityQueue<ItemType>::PeekFront() const
 {
-	return ItemType();
+	return head->getItem();
 }
 
 template<class ItemType>

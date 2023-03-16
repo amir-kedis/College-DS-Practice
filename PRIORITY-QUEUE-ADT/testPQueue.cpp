@@ -67,7 +67,22 @@ void pQueueTester(PriorityQueue<int>& pQ)
 	cout << "Enqueue(1) returns " << pQ.Enqueue(1) << " should return 1\n";
 	cout << "Enqueue(5) returns " << pQ.Enqueue(5) << " should return 1\n";
 	displayPQueue(pQ);
+	outL("");
 
+	SetConsoleTextAttribute(col, 6); // sets color
+	/// TEST Dequeue()
+	cout << "Dequeue() returns " << pQ.Dequeue() << " should return 1\n";
+	cout << "Dequeue() returns " << pQ.Dequeue() << " should return 3\n";
+	displayPQueue(pQ);
+	outL("");
+
+	SetConsoleTextAttribute(col, 5); // sets color
+	/// TEST PeekFront()
+	cout << "PeekFront() returns " << pQ.PeekFront() << " should return 4\n";
+	cout << "Enqueue(1) returns " << pQ.Enqueue(1) << " should return 1\n";
+	cout << "Enqueue(2) returns " << pQ.Enqueue(2) << " should return 1\n";
+	cout << "Enqueue(2) returns " << pQ.Enqueue(22) << " should return 1\n";
+	displayPQueue(pQ);
 
 	SetConsoleTextAttribute(col, 8); // sets color back to gray
 }
