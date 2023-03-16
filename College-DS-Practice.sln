@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "STACK-ADT", "STACK-ADT\STAC
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QUEUE-ADT", "QUEUE-ADT\QUEUE-ADT.vcxproj", "{2E557FB1-5AB1-4FF3-8541-F1AEA60B411F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PRIORITY-QUEUE-ADT", "PRIORITY-QUEUE-ADT\PRIORITY-QUEUE-ADT.vcxproj", "{66E65155-BC8D-4B66-AA1E-21F55F29D424}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,14 @@ Global
 		{2E557FB1-5AB1-4FF3-8541-F1AEA60B411F}.Release|x64.Build.0 = Release|x64
 		{2E557FB1-5AB1-4FF3-8541-F1AEA60B411F}.Release|x86.ActiveCfg = Release|Win32
 		{2E557FB1-5AB1-4FF3-8541-F1AEA60B411F}.Release|x86.Build.0 = Release|Win32
+		{66E65155-BC8D-4B66-AA1E-21F55F29D424}.Debug|x64.ActiveCfg = Debug|x64
+		{66E65155-BC8D-4B66-AA1E-21F55F29D424}.Debug|x64.Build.0 = Debug|x64
+		{66E65155-BC8D-4B66-AA1E-21F55F29D424}.Debug|x86.ActiveCfg = Debug|Win32
+		{66E65155-BC8D-4B66-AA1E-21F55F29D424}.Debug|x86.Build.0 = Debug|Win32
+		{66E65155-BC8D-4B66-AA1E-21F55F29D424}.Release|x64.ActiveCfg = Release|x64
+		{66E65155-BC8D-4B66-AA1E-21F55F29D424}.Release|x64.Build.0 = Release|x64
+		{66E65155-BC8D-4B66-AA1E-21F55F29D424}.Release|x86.ActiveCfg = Release|Win32
+		{66E65155-BC8D-4B66-AA1E-21F55F29D424}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
