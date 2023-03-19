@@ -110,8 +110,6 @@ void BT<ItemType>::preorderTraverse(void visit(ItemType&)) const
 
 }
 
-
-
 template <class ItemType>
 ItemType BT<ItemType>::getEntry(const ItemType& anEntry) const
 {
@@ -130,9 +128,6 @@ void BT<ItemType>::clear()
 
 }
 
-
-
-
 template <class ItemType>
 void BT<ItemType>::setRootData(const ItemType& newData)
 {
@@ -150,14 +145,6 @@ inline bool BT<ItemType>::remove(const ItemType& data)
 {
 	return false;
 }
-
-
-
-
-
-
-
-
 
 template <class ItemType>
 BT<ItemType>::~BT()
