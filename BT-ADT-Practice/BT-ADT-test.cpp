@@ -17,6 +17,7 @@ int main()
 	treeTester(testTree);
 
 	delete testTree;
+
 	std::cout << "TEST Finished..........\n";
 
 	std::cin.get();
