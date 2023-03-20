@@ -30,7 +30,17 @@ int main()
 
 void displayTree(BTInterface<std::string>* treePtr)
 {
+	std::vector<std::string> treeItems = treePtr->toVector();
+	int numberOfEntries = (int)treeItems.size();
 
+	std::cout << "The Tree Contains " << numberOfEntries << " items:\n";
+
+	for (size_t i = 0; i < numberOfEntries; i++)
+	{
+		std::cout << "\"" << treeItems[i] << "\" ";
+	}
+
+	std::cout << "\n";
 }
 
 void treeTester(BTInterface<std::string>* treePtr)
