@@ -52,7 +52,9 @@ void Log(std::string& msg)
 
 void displayTree(BSTInterface<std::string>* treePtr)
 {
+	std::cout << "the tree contains " << treePtr->GetNumberOfNodes() << "node: ";
 	treePtr->InorderTraverse(Log);
+	std::cout << "\n";
 }
 
 
@@ -61,6 +63,7 @@ void treeTester(BSTInterface<std::string>* treePtr)
 	methodTester<int>("test()", 1, 0, "this is not amazing");
 	methodTester<int>("test3()", 1, 1, "this is not not not amazing");
 	methodTester<int>("test33()", 2, 2, "this is amazing");
+	displayTree(treePtr);
 }
 
 template<class T>

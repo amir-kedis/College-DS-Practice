@@ -19,7 +19,7 @@ protected:
 
 public:
 	/// =======================================
-	/// Constructors and destructor
+	/// Constructors and destructor.
 	/// =======================================
 	BST();
 	BST(const BST<TypeName>& aBST);
@@ -27,7 +27,7 @@ public:
 	~BST() override;
 
 	/// =======================================
-	/// Public Modification Function
+	/// Public Modification Function.
 	/// =======================================
 	bool IsEmpty() const;
 	int GetMaxDepth() const;
@@ -41,7 +41,7 @@ public:
 	TypeName GetEntry(const TypeName& data) const;
 
 	/// =======================================
-	/// Traversal Member Functions .
+	/// Traversal Member Functions.
 	/// =======================================
 	void PreorderTraverse(void Visit(TypeName&)) const;
 	void InorderTraverse(void Visit(TypeName&)) const;
