@@ -45,9 +45,22 @@ void displayTree(BSTInterface<std::string>* treePtr)
 }
 #endif
 
+void Log(std::string msg)
+{
+	std::cout << "[ " << msg << " ], ";
+}
+
+void displayTree(BSTInterface<std::string>* treePtr)
+{
+	treePtr->InorderTraverse(Log);
+}
+
+
 void treeTester(BSTInterface<std::string>* treePtr)
 {
 	methodTester<int>("test()", 1, 0, "this is amazing");
+	methodTester<int>("test3()", 1, 1, "this is amazing");
+	methodTester<int>("test33()", 2, 2, "this is amazing");
 }
 
 template<class T>

@@ -70,6 +70,7 @@ inline void BST<TypeName>::PostorderTraverse(void Visit(TypeName&)) const
 /// =======================================
 template<class TypeName>
 inline BST<TypeName>::BST()
+	:root(nullptr)
 {
 }
 
