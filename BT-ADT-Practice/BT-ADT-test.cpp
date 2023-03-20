@@ -46,8 +46,7 @@ void displayTree(BTInterface<std::string>* treePtr)
 void treeTester(BTInterface<std::string>* treePtr)
 {
 	methodTester<int>("test()", 1, 0, "this is amazing");
-	methodTester<int>("test1()", 1, 1);
-	methodTester<int>("test2()", 1, 0);
+	displayTree(treePtr);
 }
 
 template<class T>

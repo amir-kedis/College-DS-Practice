@@ -6,7 +6,7 @@ class BT :
 	public BTInterface<ItemType>
 {
 private:
-	BinaryNode<ItemType>* rootPtr;
+	BinaryNode<ItemType>* root;
 protected:
 	//------------------------------------------------------------
 	// Protected Utility Methods Section:
@@ -37,12 +37,10 @@ protected:
 	// the copy.
 	BinaryNode<ItemType>* copyTree(const BinaryNode<ItemType>* treePtr) const;
 	// Recursive traversal helper methods:
-	void preorder(void visit(ItemType&),
-		BinaryNode<ItemType>* treePtr) const;
-	void inorder(void visit(ItemType&),
-		BinaryNode<ItemType>* treePtr) const;
-	void postorder(void visit(ItemType&),
-		BinaryNode<ItemType>* treePtr) const;
+	void preorder(void visit(ItemType&), BinaryNode<ItemType>* treePtr) const;
+	void inorder(void visit(ItemType&), BinaryNode<ItemType>* treePtr) const;
+	void postorder(void visit(ItemType&), BinaryNode<ItemType>* treePtr) const;
+	void toVectorHelper(BinaryNode<ItemType>* treePtr, std::vector<ItemType>& treeVector) const;
 public:
 	//------------------------------------------------------------
 	// Constructor and Destructor Section.
@@ -83,7 +81,9 @@ public:
 template <class ItemType>
 std::vector<ItemType> BT<ItemType>::toVector() const
 {
-	return std::vector<ItemType>();
+	std::vector<ItemType> treeItems;
+	toVectorHelper(root, treeItems);
+	return treeItems;
 }
 
 template <class ItemType>
@@ -196,6 +196,7 @@ BT<ItemType>::BT(const ItemType& rootItem)
 
 template <class ItemType>
 BT<ItemType>::BT()
+	:root(nullptr)
 {
 
 }
@@ -204,6 +205,19 @@ template <class ItemType>
 void BT<ItemType>::postorder(void visit(ItemType&), BinaryNode<ItemType>* treePtr) const
 {
 
+}
+
+template<class ItemType>
+inline void BT<ItemType>::toVectorHelper(BinaryNode<ItemType>* treePtr, std::vector<ItemType>& treeVector) const
+{
+	if (!treePtr)
+	{
+		return;
+	}
+
+	treeVector.push_back(treePtr->getItem());
+	toVectorHelper(treePtr->getLeftChildPtr(), treeVector);
+	toVectorHelper(treePtr->getRightChildPtr(), treeVector);
 }
 
 template <class ItemType>
