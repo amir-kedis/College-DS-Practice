@@ -45,9 +45,9 @@ void displayTree(BSTInterface<std::string>* treePtr)
 }
 #endif
 
-void Log(std::string msg)
+void Log(std::string& msg)
 {
-	std::cout << "[ " << msg << " ], ";
+	std::cout << "[ " << " " << " ], ";
 }
 
 void displayTree(BSTInterface<std::string>* treePtr)
@@ -58,8 +58,8 @@ void displayTree(BSTInterface<std::string>* treePtr)
 
 void treeTester(BSTInterface<std::string>* treePtr)
 {
-	methodTester<int>("test()", 1, 0, "this is amazing");
-	methodTester<int>("test3()", 1, 1, "this is amazing");
+	methodTester<int>("test()", 1, 0, "this is not amazing");
+	methodTester<int>("test3()", 1, 1, "this is not not not amazing");
 	methodTester<int>("test33()", 2, 2, "this is amazing");
 }
 

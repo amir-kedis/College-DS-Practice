@@ -1,4 +1,5 @@
 #pragma once
+#include "BinaryNode.h"
 template <class TypeName>
 class BSTInterface
 {

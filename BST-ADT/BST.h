@@ -15,6 +15,7 @@ protected:
 	/// =======================================
 	/// Utility and helper Functions.
 	/// =======================================
+	void InOrderHelper(void Visit(TypeName&), BinaryNode<TypeName>* treePtr) const;
 
 public:
 	/// =======================================
@@ -58,11 +59,28 @@ inline void BST<TypeName>::PreorderTraverse(void Visit(TypeName&)) const
 template<class TypeName>
 inline void BST<TypeName>::InorderTraverse(void Visit(TypeName&)) const
 {
+	InOrderHelper(Visit, root);
 }
 
 template<class TypeName>
 inline void BST<TypeName>::PostorderTraverse(void Visit(TypeName&)) const
 {
+}
+
+/// =======================================
+/// Utility and helper Functions.
+/// =======================================
+template<class TypeName>
+inline void BST<TypeName>::InOrderHelper(void Visit(TypeName&), BinaryNode<TypeName>* treePtr) const
+{
+	if (!root)
+	{
+		return;
+	}
+	InOrderHelper(Visit, root->getLeftChildPtr());
+	TypeName visitItem = root->getItem();
+	Visit(visitItem);
+	InOrderHelper(Visit, root->getRightChildPtr());
 }
 
 /// =======================================
@@ -113,6 +131,10 @@ inline int BST<TypeName>::GetNumberOfNodes() const
 template<class TypeName>
 inline TypeName BST<TypeName>::GetRootData() const
 {
+	if (root)
+	{
+		return root->getItem();
+	}
 	return TypeName();
 }
 
