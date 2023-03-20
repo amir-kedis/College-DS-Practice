@@ -277,5 +277,12 @@ int BT<ItemType>::getNumberOfNodesHelper(BinaryNode<ItemType>* subTreePtr) const
 template <class ItemType>
 int BT<ItemType>::getHeightHelper(BinaryNode<ItemType>* subTreePtr) const
 {
-
+	if (!subTreePtr)
+	{
+		return 0;
+	}
+	return 1 + max(
+		getHeightHelper(subTreePtr->getLeftChildPtr()),
+		getHeightHelper(subTreePtr->getRightChildPtr())
+	);
 }
