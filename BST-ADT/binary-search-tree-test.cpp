@@ -88,6 +88,17 @@ void treeTester(BSTInterface<std::string>* treePtr)
 	methodTester("Contains(\"Adam\")", treePtr->Contains("Adam"), false);
 	displayTree(treePtr);
 
+	// TESTING GetNumberOfNodes() & GetMaxDepth()
+	std::cout << "TESTING GetNumberOfNodes() & GetMaxDepth():\n";
+	std::cout << "===========================================\n";
+	methodTester("GetNumberOfNodes()", treePtr->GetNumberOfNodes(), 5);
+	methodTester("GetMaxDepth()", treePtr->GetMaxDepth(), 4);
+	methodTester("Insert(\"Arnold\")", treePtr->Insert("Arnold"), true);
+	methodTester("GetNumberOfNodes()", treePtr->GetNumberOfNodes(), 6);
+	methodTester("GetMaxDepth()", treePtr->GetMaxDepth(), 4);
+	displayTree(treePtr);
+
+
 }
 
 template<class T>

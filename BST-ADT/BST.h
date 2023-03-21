@@ -18,6 +18,8 @@ protected:
 	void InOrderHelper(void Visit(ItemType&), BinaryNode<ItemType>* treePtr) const;
 	BinaryNode<ItemType>* InsertHelper(BinaryNode<ItemType>* root, ItemType& data);
 	bool ContainsHelper(BinaryNode<ItemType>* treePtr, const ItemType& data) const;
+	int GetNumberOfNodesHelper(BinaryNode<ItemType>* treePtr) const;
+	int GetMaxDepthHelper(BinaryNode<ItemType>* treePtr) const;
 
 public:
 	/// =======================================
@@ -124,6 +126,26 @@ inline bool BST<ItemType>::ContainsHelper(BinaryNode<ItemType>* treePtr, const I
 	}
 }
 
+template<class ItemType>
+inline int BST<ItemType>::GetNumberOfNodesHelper(BinaryNode<ItemType>* treePtr) const
+{
+	if (!treePtr)
+	{
+		return 0;
+	}
+	return 1 + GetNumberOfNodesHelper(treePtr->getLeftChildPtr()) + GetNumberOfNodesHelper(treePtr->getRightChildPtr());
+}
+
+template<class ItemType>
+inline int BST<ItemType>::GetMaxDepthHelper(BinaryNode<ItemType>* treePtr) const
+{
+	if (!treePtr)
+	{
+		return 0;
+	}
+	return 1 + max(GetMaxDepthHelper(treePtr->getLeftChildPtr()), GetMaxDepthHelper(treePtr->getRightChildPtr()));
+}
+
 /// =======================================
 /// Constructors and destructor
 /// =======================================
@@ -160,13 +182,23 @@ inline bool BST<ItemType>::IsEmpty() const
 template<class ItemType>
 inline int BST<ItemType>::GetMaxDepth() const
 {
-	return 0;
+	if (!root)
+	{
+		return 0;
+	}
+
+	return GetMaxDepthHelper(root);
 }
 
 template<class ItemType>
 inline int BST<ItemType>::GetNumberOfNodes() const
 {
-	return 0;
+	if (!root)
+	{
+		return 0;
+	}
+
+	return GetNumberOfNodesHelper(root);
 }
 
 template<class ItemType>
