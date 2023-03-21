@@ -161,6 +161,10 @@ inline ItemType BST<ItemType>::GetRootData() const
 template<class ItemType>
 inline void BST<ItemType>::SetRootData(const ItemType& data)
 {
+	if (root)
+	{
+		root->setItem(data);
+	}
 }
 
 template<class ItemType>

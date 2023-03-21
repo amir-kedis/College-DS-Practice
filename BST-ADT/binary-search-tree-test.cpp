@@ -14,7 +14,7 @@ int main()
 	BSTInterface<std::string>* testTree = new BST<std::string>;
 
 	std::cout << "----------------------------------------\n";
-	std::cout << "-------THIS PROGRAM TESTS BST ADT--------\n";
+	std::cout << "-------THIS PROGRAM TESTS BST ADT-------\n";
 	std::cout << "----------------------------------------\n";
 
 	treeTester(testTree);
@@ -54,7 +54,7 @@ void displayTree(BSTInterface<std::string>* treePtr)
 {
 	std::cout << "The tree contains " << treePtr->GetNumberOfNodes() << " node: ";
 	treePtr->InorderTraverse(Log);
-	std::cout << "\n";
+	std::cout << "\n\n";
 }
 
 
@@ -68,7 +68,14 @@ void treeTester(BSTInterface<std::string>* treePtr)
 	methodTester("Insert(\"Zeron\")", treePtr->Insert("Zeron"), true);
 	methodTester("Insert(\"Emy\")", treePtr->Insert("Emy"), true);
 	methodTester("Insert(\"Carl\");)", treePtr->Insert("Carl"), true);
+	displayTree(treePtr);
 
+	// TESTING GetRootData and SetRootData
+	std::cout << "TESTING GetRootData() & SetRootData():\n";
+	std::cout << "======================================\n";
+	methodTester<std::string>("GetRootData()", treePtr->GetRootData(), "Bob");
+	treePtr->SetRootData("BobReplaced");
+	methodTester<std::string>("SetRootData(\"BobReplaced\") & GetRootData()", treePtr->GetRootData(), "BobReplaced", "this function shouldn't be used because it can mess the order");
 	displayTree(treePtr);
 }
 
