@@ -17,6 +17,7 @@ protected:
 	/// =======================================
 	void InOrderHelper(void Visit(ItemType&), BinaryNode<ItemType>* treePtr) const;
 	BinaryNode<ItemType>* InsertHelper(BinaryNode<ItemType>* root, ItemType& data);
+	bool ContainsHelper(BinaryNode<ItemType>* treePtr, const ItemType& data) const;
 
 public:
 	/// =======================================
@@ -103,6 +104,26 @@ inline BinaryNode<ItemType>* BST<ItemType>::InsertHelper(BinaryNode<ItemType>* r
 	return root;
 }
 
+template<class ItemType>
+inline bool BST<ItemType>::ContainsHelper(BinaryNode<ItemType>* treePtr, const ItemType& data) const
+{
+	if (!treePtr)
+	{
+		return false;
+	}
+	if (treePtr->getItem() == data)
+	{
+		return true;
+	}
+	if (treePtr->getItem() > data)
+	{
+		return ContainsHelper(treePtr->getLeftChildPtr(), data);
+	}
+	else {
+		return ContainsHelper(treePtr->getRightChildPtr(), data);
+	}
+}
+
 /// =======================================
 /// Constructors and destructor
 /// =======================================
@@ -171,10 +192,10 @@ template<class ItemType>
 inline bool BST<ItemType>::Insert(const ItemType& data)
 {
 	/// THIS BST implementation doesn't allow duplicates
-	//if (Contains(data))
-	//{
-	//	return;
-	//}
+	if (Contains(data))
+	{
+		return false;
+	}
 	ItemType dataCopy = data;
 	root = InsertHelper(root, dataCopy);
 	return true;
@@ -200,7 +221,15 @@ inline bool BST<ItemType>::Contains(const ItemType& data) const
 	}
 	if (root->getItem() == data)
 	{
-		//root->get
+		return true;
+	}
+	if (root->getItem() >= data)
+	{
+		return ContainsHelper(root->getLeftChildPtr(), data);
+	}
+	else
+	{
+		return ContainsHelper(root->getRightChildPtr(), data);
 	}
 }
 

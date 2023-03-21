@@ -67,7 +67,8 @@ void treeTester(BSTInterface<std::string>* treePtr)
 	methodTester("Insert(\"Amir\")", treePtr->Insert("Amir"), true);
 	methodTester("Insert(\"Zeron\")", treePtr->Insert("Zeron"), true);
 	methodTester("Insert(\"Emy\")", treePtr->Insert("Emy"), true);
-	methodTester("Insert(\"Carl\");)", treePtr->Insert("Carl"), true);
+	methodTester("Insert(\"Carl\"))", treePtr->Insert("Carl"), true);
+	methodTester("Insert(\"Carl\"))", treePtr->Insert("Carl"), false, "No Duplicates");
 	displayTree(treePtr);
 
 	// TESTING GetRootData and SetRootData
@@ -77,6 +78,16 @@ void treeTester(BSTInterface<std::string>* treePtr)
 	treePtr->SetRootData("BobReplaced");
 	methodTester<std::string>("SetRootData(\"BobReplaced\") & GetRootData()", treePtr->GetRootData(), "BobReplaced", "this function shouldn't be used because it can mess the order");
 	displayTree(treePtr);
+
+	// TESTING Contains()
+	std::cout << "TESTING Contains():\n";
+	std::cout << "===================\n";
+	methodTester("Contains(\"Amir\")", treePtr->Contains("Amir"), true, "left branch");
+	methodTester("Contains(\"BobReplaced\")", treePtr->Contains("BobReplaced"), true, "root item");
+	methodTester("Contains(\"Zeron\")", treePtr->Contains("Zeron"), true, "right branch");
+	methodTester("Contains(\"Adam\")", treePtr->Contains("Adam"), false);
+	displayTree(treePtr);
+
 }
 
 template<class T>
