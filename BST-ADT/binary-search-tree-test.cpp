@@ -47,12 +47,12 @@ void displayTree(BSTInterface<std::string>* treePtr)
 
 void Log(std::string& msg)
 {
-	std::cout << "[ " << " " << " ], ";
+	std::cout << "[ " << msg << " ], ";
 }
 
 void displayTree(BSTInterface<std::string>* treePtr)
 {
-	std::cout << "the tree contains " << treePtr->GetNumberOfNodes() << "node: ";
+	std::cout << "The tree contains " << treePtr->GetNumberOfNodes() << " node: ";
 	treePtr->InorderTraverse(Log);
 	std::cout << "\n";
 }
@@ -60,9 +60,15 @@ void displayTree(BSTInterface<std::string>* treePtr)
 
 void treeTester(BSTInterface<std::string>* treePtr)
 {
-	methodTester<int>("test()", 1, 0, "this is not amazing");
-	methodTester<int>("test3()", 1, 1, "this is not not not amazing");
-	methodTester<int>("test33()", 2, 2, "this is amazing");
+	// TESTING INSERT
+	std::cout << "TESTING Insert():\n";
+	std::cout << "=================\n";
+	methodTester("Insert(\"Bob\")", treePtr->Insert("Bob"), true);
+	methodTester("Insert(\"Amir\")", treePtr->Insert("Amir"), true);
+	methodTester("Insert(\"Zeron\")", treePtr->Insert("Zeron"), true);
+	methodTester("Insert(\"Emy\")", treePtr->Insert("Emy"), true);
+	methodTester("Insert(\"Carl\");)", treePtr->Insert("Carl"), true);
+
 	displayTree(treePtr);
 }
 
