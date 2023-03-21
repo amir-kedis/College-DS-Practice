@@ -20,6 +20,8 @@ protected:
 	bool ContainsHelper(BinaryNode<ItemType>* treePtr, const ItemType& data) const;
 	int GetNumberOfNodesHelper(BinaryNode<ItemType>* treePtr) const;
 	int GetMaxDepthHelper(BinaryNode<ItemType>* treePtr) const;
+	BinaryNode<ItemType>* RemoveHelper(BinaryNode<ItemType>* treePtr, const ItemType& data);
+	BinaryNode<ItemType>* GetMinNode(BinaryNode<ItemType>* treePtr);
 
 public:
 	/// =======================================
@@ -42,7 +44,6 @@ public:
 	bool Remove(const ItemType& data);
 	void Clear();
 	bool Contains(const ItemType& data) const;
-	ItemType GetEntry(const ItemType& data) const;
 
 	/// =======================================
 	/// Traversal Member Functions.
@@ -51,6 +52,20 @@ public:
 	void InorderTraverse(void Visit(ItemType&)) const;
 	void PostorderTraverse(void Visit(ItemType&)) const;
 };
+
+template <class ItemType>
+BinaryNode<ItemType>* BST<ItemType>::GetMinNode(BinaryNode<ItemType>* treePtr)
+{
+	if (!treePtr)
+	{
+		return treePtr;
+	}
+	if (!treePtr->getLeftChildPtr())
+	{
+		return treePtr;
+	}
+	treePtr = treePtr->getLeftChildPtr();
+}
 
 /// =======================================
 /// Traversal Member Functions .
@@ -146,6 +161,53 @@ inline int BST<ItemType>::GetMaxDepthHelper(BinaryNode<ItemType>* treePtr) const
 	return 1 + max(GetMaxDepthHelper(treePtr->getLeftChildPtr()), GetMaxDepthHelper(treePtr->getRightChildPtr()));
 }
 
+template<class ItemType>
+inline BinaryNode<ItemType>* BST<ItemType>::RemoveHelper(BinaryNode<ItemType>* treePtr, const ItemType& data)
+{
+	if (!treePtr)
+	{
+		return treePtr;
+	}
+	else if (data < treePtr->getItem())
+	{
+		treePtr->setLeftChildPtr(RemoveHelper(treePtr->getLeftChildPtr(), data));
+	}
+	else if (data > treePtr->getItem())
+	{
+		treePtr->setRightChildPtr(RemoveHelper(treePtr->getRightChildPtr(), data));
+	}
+
+	else { // I found you
+		// CASE1: Leaf
+		if (!treePtr->getLeftChildPtr() && !treePtr->getRightChildPtr())
+		{
+			delete treePtr;
+			treePtr = NULL;
+		}
+		// CASE2: 1 Child
+		else if (!treePtr->getLeftChildPtr())
+		{
+			BinaryNode<ItemType>* NodeToBeDelted = treePtr;
+			treePtr = treePtr->getRightChildPtr();
+			delete NodeToBeDelted;
+		}
+		else if (!treePtr->getRightChildPtr())
+		{
+			BinaryNode<ItemType>* NodeToBeDelted = treePtr;
+			treePtr = treePtr->getLeftChildPtr();
+			delete NodeToBeDelted;
+		}
+		// CASE3: 2 Children (General Case)
+		else {
+			BinaryNode<ItemType>* NextSuccusor = GetMinNode(treePtr->getRightChildPtr());
+			treePtr->setItem(NextSuccusor->getItem());
+			treePtr->setRightChildPtr(RemoveHelper(treePtr->getRightChildPtr(), NextSuccusor->getItem()));
+		}
+	}
+	return treePtr;
+}
+
+
 /// =======================================
 /// Constructors and destructor
 /// =======================================
@@ -236,12 +298,29 @@ inline bool BST<ItemType>::Insert(const ItemType& data)
 template<class ItemType>
 inline bool BST<ItemType>::Remove(const ItemType& data)
 {
-	return false;
+	// CASE0: If empty tree return 0
+	if (!root)
+	{
+		return false;
+	}
+
+	// CASE1: Value is not in tree
+	if (!Contains(data))
+	{
+		return false;
+	}
+
+	root = RemoveHelper(root, data);
+	return true;
 }
 
 template<class ItemType>
 inline void BST<ItemType>::Clear()
 {
+	while (root)
+	{
+		Remove(root->getItem());
+	}
 }
 
 template<class ItemType>
@@ -263,10 +342,4 @@ inline bool BST<ItemType>::Contains(const ItemType& data) const
 	{
 		return ContainsHelper(root->getRightChildPtr(), data);
 	}
-}
-
-template<class ItemType>
-inline ItemType BST<ItemType>::GetEntry(const ItemType& data) const
-{
-	return ItemType();
 }

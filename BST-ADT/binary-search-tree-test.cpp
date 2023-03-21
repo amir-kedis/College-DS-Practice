@@ -98,6 +98,23 @@ void treeTester(BSTInterface<std::string>* treePtr)
 	methodTester("GetMaxDepth()", treePtr->GetMaxDepth(), 4);
 	displayTree(treePtr);
 
+	// TESTING Remove()
+	std::cout << "TESTING Remove():\n";
+	std::cout << "=================\n";
+	methodTester("Remove(\"Arnold\")", treePtr->Remove("Arnold"), true, "leaf Node");
+	methodTester("Remove(\"BobReplaced\")", treePtr->Remove("BobReplaced"), true, "root have 2 child Node");
+	methodTester("Remove(\"BobReplaced\")", treePtr->Remove("BobReplaced"), false, "Can remove only existing element");
+	displayTree(treePtr);
+
+	// TESTING IsEmpty
+	std::cout << "TESTING IsEmpty():\n";
+	std::cout << "==================\n";
+	methodTester("IsEmpty()", treePtr->IsEmpty(), false);
+	methodTester("Clear()", 0, 0);
+	treePtr->Clear();
+	methodTester("IsEmpty()", treePtr->IsEmpty(), true);
+	displayTree(treePtr);
+
 
 }
 
