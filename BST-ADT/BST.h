@@ -176,7 +176,7 @@ inline BST<ItemType>::~BST()
 template<class ItemType>
 inline bool BST<ItemType>::IsEmpty() const
 {
-	return false;
+	return !root;
 }
 
 template<class ItemType>
