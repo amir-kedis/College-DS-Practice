@@ -13,7 +13,6 @@ public:
 	virtual bool Remove(const ItemType& data) = 0;
 	virtual void Clear() = 0;
 	virtual bool Contains(const ItemType& data) const = 0;
-
 	virtual void PreorderTraverse(void Visit(ItemType&)) const = 0;
 	virtual void InorderTraverse(void Visit(ItemType&)) const = 0;
 	virtual void PostorderTraverse(void Visit(ItemType&)) const = 0;

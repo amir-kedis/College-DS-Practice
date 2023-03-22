@@ -15,7 +15,9 @@ protected:
 	/// =======================================
 	/// Utility and helper Functions.
 	/// =======================================
+	void PreOrderHelper(void Visit(ItemType&), BinaryNode<ItemType>* treePtr) const;
 	void InOrderHelper(void Visit(ItemType&), BinaryNode<ItemType>* treePtr) const;
+	void PostOrderHelper(void Visit(ItemType&), BinaryNode<ItemType>* treePtr) const;
 	BinaryNode<ItemType>* InsertHelper(BinaryNode<ItemType>* root, ItemType& data);
 	bool ContainsHelper(BinaryNode<ItemType>* treePtr, const ItemType& data) const;
 	int GetNumberOfNodesHelper(BinaryNode<ItemType>* treePtr) const;
@@ -53,19 +55,6 @@ public:
 	void PostorderTraverse(void Visit(ItemType&)) const;
 };
 
-template <class ItemType>
-BinaryNode<ItemType>* BST<ItemType>::GetMinNode(BinaryNode<ItemType>* treePtr)
-{
-	if (!treePtr)
-	{
-		return treePtr;
-	}
-	if (!treePtr->getLeftChildPtr())
-	{
-		return treePtr;
-	}
-	treePtr = treePtr->getLeftChildPtr();
-}
 
 /// =======================================
 /// Traversal Member Functions .
@@ -73,6 +62,7 @@ BinaryNode<ItemType>* BST<ItemType>::GetMinNode(BinaryNode<ItemType>* treePtr)
 template<class ItemType>
 inline void BST<ItemType>::PreorderTraverse(void Visit(ItemType&)) const
 {
+	PreOrderHelper(Visit, root);
 }
 
 template<class ItemType>
@@ -84,11 +74,25 @@ inline void BST<ItemType>::InorderTraverse(void Visit(ItemType&)) const
 template<class ItemType>
 inline void BST<ItemType>::PostorderTraverse(void Visit(ItemType&)) const
 {
+	PostOrderHelper(Visit, root);
 }
 
 /// =======================================
 /// Utility and helper Functions.
 /// =======================================
+template<class ItemType>
+inline void BST<ItemType>::PreOrderHelper(void Visit(ItemType&), BinaryNode<ItemType>* treePtr) const
+{
+	if (!treePtr)
+	{
+		return;
+	}
+	ItemType visitItem = treePtr->getItem();
+	Visit(visitItem);
+	PreOrderHelper(Visit, treePtr->getLeftChildPtr());
+	PreOrderHelper(Visit, treePtr->getRightChildPtr());
+}
+
 template<class ItemType>
 inline void BST<ItemType>::InOrderHelper(void Visit(ItemType&), BinaryNode<ItemType>* treePtr) const
 {
@@ -100,6 +104,19 @@ inline void BST<ItemType>::InOrderHelper(void Visit(ItemType&), BinaryNode<ItemT
 	ItemType visitItem = treePtr->getItem();
 	Visit(visitItem);
 	InOrderHelper(Visit, treePtr->getRightChildPtr());
+}
+
+template<class ItemType>
+inline void BST<ItemType>::PostOrderHelper(void Visit(ItemType&), BinaryNode<ItemType>* treePtr) const
+{
+	if (!treePtr)
+	{
+		return;
+	}
+	PreOrderHelper(Visit, treePtr->getLeftChildPtr());
+	PreOrderHelper(Visit, treePtr->getRightChildPtr());
+	ItemType visitItem = treePtr->getItem();
+	Visit(visitItem);
 }
 
 template<class ItemType>
@@ -207,6 +224,19 @@ inline BinaryNode<ItemType>* BST<ItemType>::RemoveHelper(BinaryNode<ItemType>* t
 	return treePtr;
 }
 
+template <class ItemType>
+BinaryNode<ItemType>* BST<ItemType>::GetMinNode(BinaryNode<ItemType>* treePtr)
+{
+	if (!treePtr)
+	{
+		return treePtr;
+	}
+	if (!treePtr->getLeftChildPtr())
+	{
+		return treePtr;
+	}
+	treePtr = treePtr->getLeftChildPtr();
+}
 
 /// =======================================
 /// Constructors and destructor
