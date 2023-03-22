@@ -24,6 +24,7 @@ protected:
 	int GetMaxDepthHelper(BinaryNode<ItemType>* treePtr) const;
 	BinaryNode<ItemType>* RemoveHelper(BinaryNode<ItemType>* treePtr, const ItemType& data);
 	BinaryNode<ItemType>* GetMinNode(BinaryNode<ItemType>* treePtr);
+	BinaryNode<ItemType>* CopyBST(BinaryNode<ItemType>* oldTreePtr);
 
 public:
 	/// =======================================
@@ -238,6 +239,21 @@ BinaryNode<ItemType>* BST<ItemType>::GetMinNode(BinaryNode<ItemType>* treePtr)
 	treePtr = treePtr->getLeftChildPtr();
 }
 
+template<class ItemType>
+inline BinaryNode<ItemType>* BST<ItemType>::CopyBST(BinaryNode<ItemType>* oldTreePtr)
+{
+	BinaryNode<ItemType>* newTreePtr = nullptr;
+
+	if (oldTreePtr)
+	{
+		newTreePtr = new BinaryNode<ItemType>(oldTreePtr->getItem());
+		newTreePtr->setLeftChildPtr(CopyBST(oldTreePtr->getLeftChildPtr()));
+		newTreePtr->setRightChildPtr(CopyBST(oldTreePtr->getRightChildPtr()));
+	}
+
+	return newTreePtr;
+}
+
 /// =======================================
 /// Constructors and destructor
 /// =======================================
@@ -250,16 +266,20 @@ inline BST<ItemType>::BST()
 template<class ItemType>
 inline BST<ItemType>::BST(const BST<ItemType>& aBST)
 {
+	root = CopyBST(aBST.root);
 }
 
 template<class ItemType>
 inline BST<ItemType>::BST(const BinaryNode<ItemType>* aRoot)
+	:root(aRoot)
 {
+
 }
 
 template<class ItemType>
 inline BST<ItemType>::~BST()
 {
+	Clear();
 }
 
 /// =======================================
