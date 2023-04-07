@@ -2,7 +2,7 @@
 #include "HeapInterface.h"
 template <class ItemType, int DEFAULT_CAPACITY = 20>
 class ArrayMinHeap :
-	public HeapInterface
+	public HeapInterface<ItemType>
 {
 public:
 	////////////////////////////////
@@ -17,7 +17,7 @@ public:
 	/// Main Heap Functions 
 	///////////////////////
 	bool IsEmpty() const;
-	int getNumberOfNodes() const;
+	int GetNumberOfNodes() const;
 	int GetHeight() const;
 	ItemType PeekTop() const;
 	bool Add(const ItemType& data);
@@ -46,3 +46,58 @@ private:
 	void HeapCreate();
 };
 
+template<class ItemType, int DEFAULT_CAPACITY>
+inline ArrayMinHeap<ItemType, DEFAULT_CAPACITY>::ArrayMinHeap()
+{
+}
+
+template<class ItemType, int DEFAULT_CAPACITY>
+inline ArrayMinHeap<ItemType, DEFAULT_CAPACITY>::ArrayMinHeap(const ItemType arr[], const int& size)
+{
+}
+
+template<class ItemType, int DEFAULT_CAPACITY>
+inline ArrayMinHeap<ItemType, DEFAULT_CAPACITY>::~ArrayMinHeap()
+{
+}
+
+template<class ItemType, int DEFAULT_CAPACITY>
+inline bool ArrayMinHeap<ItemType, DEFAULT_CAPACITY>::IsEmpty() const
+{
+	return false;
+}
+
+template<class ItemType, int DEFAULT_CAPACITY>
+inline int ArrayMinHeap<ItemType, DEFAULT_CAPACITY>::GetNumberOfNodes() const
+{
+	return 0;
+}
+
+template<class ItemType, int DEFAULT_CAPACITY>
+inline int ArrayMinHeap<ItemType, DEFAULT_CAPACITY>::GetHeight() const
+{
+	return 0;
+}
+
+template<class ItemType, int DEFAULT_CAPACITY>
+inline ItemType ArrayMinHeap<ItemType, DEFAULT_CAPACITY>::PeekTop() const
+{
+	return ItemType();
+}
+
+template<class ItemType, int DEFAULT_CAPACITY>
+inline bool ArrayMinHeap<ItemType, DEFAULT_CAPACITY>::Add(const ItemType& data)
+{
+	return false;
+}
+
+template<class ItemType, int DEFAULT_CAPACITY>
+inline bool ArrayMinHeap<ItemType, DEFAULT_CAPACITY>::Remove()
+{
+	return false;
+}
+
+template<class ItemType, int DEFAULT_CAPACITY>
+inline void ArrayMinHeap<ItemType, DEFAULT_CAPACITY>::Clear()
+{
+}
