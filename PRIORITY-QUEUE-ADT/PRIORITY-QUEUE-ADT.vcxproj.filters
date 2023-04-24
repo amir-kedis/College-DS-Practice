@@ -29,5 +29,8 @@
     <ClInclude Include="PriorityQueue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MinHeapPQueue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

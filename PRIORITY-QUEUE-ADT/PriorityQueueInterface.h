@@ -1,4 +1,7 @@
 #pragma once
+
+#include <vector>
+
 template <class ItemType>
 class PriorityQueueInterface
 {
@@ -8,6 +11,7 @@ public:
 	virtual bool Enqueue(const ItemType& anEntry) = 0;
 	virtual bool Dequeue() = 0;
 	virtual ItemType PeekFront() const = 0;
+	virtual std::vector<ItemType> toVector() const = 0;
 	virtual ~PriorityQueueInterface() {}
 };
 

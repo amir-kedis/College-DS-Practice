@@ -130,6 +130,7 @@
     <ClCompile Include="testPQueue.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MinHeapPQueue.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="PriorityQueue.h" />
     <ClInclude Include="PriorityQueueInterface.h" />
